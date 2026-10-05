@@ -447,3 +447,27 @@ button { color: inherit; }
 .footer-bottom a:focus-visible, .search-trigger:focus-visible, .search-close:focus-visible, .site-search-dialog input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
 .quote-form-status[data-state="error"] { color: #7d241b; border-color: #e6b5ad; background: #fff4f2; }
 .quote-form-status[data-state="error"]:focus { outline-color: #ba4639; }
+
+/* Small brand refinements: calmer typography and more natural surfaces. */
+.hero-shade {
+  background: linear-gradient(90deg, rgba(6,20,29,.82) 0%, rgba(7,23,33,.64) 43%, rgba(9,28,39,.12) 100%),
+    linear-gradient(0deg, rgba(5,18,26,.3), transparent 48%);
+}
+.hero h1 {
+  font-weight: 590;
+  letter-spacing: -.045em;
+  line-height: 1.06;
+}
+.hero-copy > p { max-width: 500px; line-height: 1.75; }
+.eyebrow { letter-spacing: .12em; }
+.about-copy h2, .section-heading h2, .contact h2 {
+  font-weight: 590;
+  letter-spacing: -.04em;
+  line-height: 1.12;
+}
+.button, .nav-cta { border-radius: 2px; }
+.service-card, .why-card, .industry-home-card, .contact-card {
+  border-radius: 3px;
+}
+.network-feature { border-radius: 3px; }
+.visual-caption { box-shadow: 0 8px 24px rgba(17,39,54,.09); }
