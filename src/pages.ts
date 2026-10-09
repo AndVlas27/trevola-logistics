@@ -31,12 +31,12 @@ const locale = currentLanguage()
 const copy = siteCopy[locale]
 const common = copy.common
 const transportOptions: Record<string, [string, string][]> = {
-  en: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Dedicated']],
-  pt: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Expresso'], ['Dedicated', 'Dedicado']],
-  fr: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Dédié']],
-  de: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Direkttransport']],
-  ru: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Срочная перевозка'], ['Dedicated', 'Выделенный транспорт']],
-  uk: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Термінове перевезення'], ['Dedicated', 'Виділений транспорт']],
+  en: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Dedicated'], ['ADR', "ADR dangerous goods"]],
+  pt: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Expresso'], ['Dedicated', 'Dedicado'], ['ADR', "Mercadorias perigosas (ADR)"]],
+  fr: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Dédié'], ['ADR', "Marchandises dangereuses (ADR)"]],
+  de: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Direkttransport'], ['ADR', "Gefahrgut (ADR)"]],
+  ru: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Срочная перевозка'], ['Dedicated', 'Выделенный транспорт'], ['ADR', "Опасный груз (ADR)"]],
+  uk: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Термінове перевезення'], ['Dedicated', 'Виділений транспорт'], ['ADR', "Небезпечний вантаж (ADR)"]],
 }
 const page = (document.body.dataset.page || 'about-us') as PageId
 const href = (id: PageId) => pageUrl(locale,id)

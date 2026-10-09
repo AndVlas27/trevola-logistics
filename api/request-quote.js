@@ -1,7 +1,7 @@
 const INBOX = 'info@trevolalogistics.com'
 const MAX_BODY_BYTES = 20_000
 const MAX_FIELD_LENGTH = 2_000
-const ALLOWED_TRANSPORTS = new Set(['FTL', 'LTL', 'Express', 'Dedicated'])
+const ALLOWED_TRANSPORTS = new Set(['FTL', 'LTL', 'Express', 'Dedicated', 'ADR'])
 
 export const config = { runtime: 'edge' }
 
