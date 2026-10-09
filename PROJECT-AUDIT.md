@@ -33,4 +33,6 @@
 - As páginas de privacidade e termos continuam identificadas como modelos por completar. Atualize-as com denominação social, morada, prazo de conservação, fornecedores e práticas de tratamento, e lei/jurisdição aplicáveis.
 - Não foram fornecidos URLs oficiais de redes sociais, por isso não foram inventados.
 - O preview local não abriu no browser isolado desta sessão. A página inicial e o formulário foram revistos visualmente no preview da Vercel; não houve teste em dispositivo móvel físico.
-- O build local e o preview Vercel estão concluídos. A publicação de produção aguarda a validação dos dados das páginas legais e o teste de entrega do formulário.
+- A produção permanece publicada em `https://www.trevolalogistics.com/pt/`. Nesta revisão, corrigi a geração do atributo de idioma: antes eram emitidos dois `data-locale`, fazendo o navegador mostrar conteúdo inglês em páginas portuguesas. A correção foi validada nas 48 páginas geradas (12 páginas × 4 idiomas).
+- Os indicadores sem comprovação (mais de 25 países, apoio 24/7, 10.000+ envios e 99% de entregas no prazo) foram substituídos por modalidades FTL, LTL, Expresso e Dedicado, e as referências à cobertura foram qualificadas por percurso e disponibilidade.
+- Ainda é necessário enviar um pedido controlado e confirmar a entrega à caixa da empresa. As páginas legais continuam como modelos por completar com os dados reais da empresa e as práticas de tratamento.

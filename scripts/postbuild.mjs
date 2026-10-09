@@ -34,6 +34,12 @@ const localeTag = { en:'en', pt:'pt-PT', fr:'fr', de:'de' }
 const pathFor = (lang, page) => '/' + lang + '/' + (page === 'home' ? '' : page + '.html')
 const sourceFor = page => join(out, page === 'home' ? 'index.html' : page + '.html')
 function escape(value) { return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;') }
+function setBodyLocale(html, lang) {
+  return html.replace(/<body([^>]*)>/, (_, attributes) => {
+    const withoutLocale = attributes.replace(/\sdata-locale="[^"]*"/, '')
+    return '<body' + withoutLocale + ' data-locale="' + lang + '">'
+  })
+}
 
 for (const page of pages) {
   const template = await readFile(sourceFor(page), 'utf8')
@@ -48,8 +54,8 @@ for (const page of pages) {
     const alternates = langs.map(code => '<link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '">').join('\n  ')
       + '\n  <link rel="alternate" hreflang="x-default" href="' + base + pathFor('en',page) + '">'
     html = html.replace(/<html lang="[^"]*">/, '<html lang="' + localeTag[lang] + '">')
-      .replace(/<body([^>]*)>/, '<body$1 data-locale="' + lang + '">')
-      .replace(/<title>[\s\S]*?<\/title>/, '<title>' + escape(title) + '</title>')
+    html = setBodyLocale(html, lang)
+    html = html.replace(/<title>[\s\S]*?<\/title>/, '<title>' + escape(title) + '</title>')
       .replace(/<meta name="description" content="[^"]*"\s*\/?>/, '<meta name="description" content="' + escape(pageDescription) + '">')
       .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, '<link rel="canonical" href="' + canonical + '">')
       .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, '<meta property="og:url" content="' + canonical + '">')
@@ -72,7 +78,7 @@ for (const page of pages) {
   let rootHtml = template
   const aliasLang = page === 'home' ? 'pt' : 'en'
   const canonical = base + pathFor(aliasLang,page)
-  rootHtml = rootHtml.replace(/<body([^>]*)>/, '<body$1 data-locale="' + aliasLang + '">')
+  rootHtml = setBodyLocale(rootHtml, aliasLang)
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, '<link rel="canonical" href="' + canonical + '">')
     .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, '<meta property="og:url" content="' + canonical + '">')
     .replace('</head>', '  ' + langs.map(code=>'<link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '">').join('\n  ') + '\n  <link rel="alternate" hreflang="x-default" href="' + base + pathFor('en',page) + '">\n</head>')
