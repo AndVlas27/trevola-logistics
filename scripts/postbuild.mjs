@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path'
 const root = new URL('../dist/', import.meta.url)
 const out = decodeURIComponent(root.pathname.replace(/^\/([A-Za-z]:)/, '$1'))
 const builtAssets = await readdir(join(out, 'assets'))
-const heroAsset = builtAssets.find(file => file.startsWith('hero-road-production-') && file.endsWith('.jpg'))
+const heroAsset = builtAssets.find(file => file.startsWith('hero-production-') && file.endsWith('.jpg'))
 const aboutAsset = builtAssets.find(file => file.startsWith('trevola-loading-production-') && file.endsWith('.jpg'))
 const base = 'https://www.trevolalogistics.com'
 const langs = ['en', 'pt', 'fr', 'de']

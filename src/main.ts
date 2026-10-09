@@ -1,5 +1,5 @@
 import './style.css'
-import heroImage from './assets/images/hero-road-production.jpg'
+import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
 import warehouseImage from './assets/images/warehouse-concept-branded.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
