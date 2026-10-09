@@ -130,8 +130,9 @@ variantes localizadas no build.
   `RESEND_FROM_EMAIL` estão ligadas ao projeto em Production e Preview. Como os
   valores são secretos, confirme que a chave nova foi usada e que o remetente
   corresponde a um endereço autorizado na Resend.
-- Fazer um deployment de preview a partir das alterações e testar o formulário
-  com um pedido real, confirmando a entrega à caixa configurada.
+- O preview da branch `codex/trevola-branding-audit` está pronto; a página inicial
+  e o formulário foram inspecionados. Antes de promover para produção, testar um
+  pedido real e confirmar a entrega à caixa configurada.
 - Rever e completar os modelos legais antes de os apresentar como documentos
-  finais: falta validar denominação social, morada, prazo de conservação,
+  finais: validar denominação social, morada, prazo de conservação,
   fornecedores/práticas reais de tratamento e lei/jurisdição aplicáveis.
