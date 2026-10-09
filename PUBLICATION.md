@@ -122,17 +122,9 @@ variantes localizadas no build.
   sitemap.
 - Auditoria de referências a assets locais no build: nenhum caminho em falta.
 
-## Ações externas pendentes
+## Estado após publicação
 
-- O projeto da Vercel está ligado ao repositório GitHub; os domínios `www` e raiz
-  estão configurados e a zona DNS Cloudflare aparece completa.
-- A Resend confirma o domínio como verificado. As variáveis `RESEND_API_KEY` e
-  `RESEND_FROM_EMAIL` estão ligadas ao projeto em Production e Preview. Como os
-  valores são secretos, confirme que a chave nova foi usada e que o remetente
-  corresponde a um endereço autorizado na Resend.
-- O preview da branch `codex/trevola-branding-audit` está pronto; a página inicial
-  e o formulário foram inspecionados. Antes de promover para produção, testar um
-  pedido real e confirmar a entrega à caixa configurada.
-- Rever e completar os modelos legais antes de os apresentar como documentos
-  finais: validar denominação social, morada, prazo de conservação,
-  fornecedores/práticas reais de tratamento e lei/jurisdição aplicáveis.
+- A revisão está publicada em `https://www.trevolalogistics.com/pt/` pelo commit `0a1c613` na branch `main`; o deployment de produção da Vercel ficou Ready.
+- A Resend confirma o domínio como verificado. As variáveis `RESEND_API_KEY` e `RESEND_FROM_EMAIL` estão ligadas ao projeto em Production e Preview, mas os valores secretos não foram lidos.
+- Ainda é necessário enviar um pedido de teste controlado e confirmar a entrega à caixa da empresa.
+- As páginas de privacidade e termos continuam como modelos por completar. Validar denominação social, morada, prazo de conservação, fornecedores/práticas reais de tratamento e lei/jurisdição aplicáveis.
