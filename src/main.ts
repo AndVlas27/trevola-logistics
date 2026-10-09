@@ -1,7 +1,7 @@
 import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
-import warehouseImage from './assets/images/warehouse-concept-branded.jpg'
+import warehouseImage from './assets/images/warehouse-network-official.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 
 import { languageOptions, translations, type Language } from './i18n'
