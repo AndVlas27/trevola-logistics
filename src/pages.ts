@@ -44,6 +44,12 @@ const imageText = {
   fr: ['Transport routier Trevola Logistics, image illustrative', 'Image illustrative de transport'],
   de: ['Straßentransport von Trevola Logistics, Beispielbild', 'Illustratives Transportbild'],
 }[locale]
+const contactImageText = {
+  en: ['Illustrative image of a fictional logistics professional', 'Illustrative customer support image'],
+  pt: ['Imagem ilustrativa de uma profissional fictícia da área logística', 'Imagem ilustrativa de apoio ao cliente'],
+  fr: ['Image illustrative d’une professionnelle fictive de la logistique', 'Image illustrative du service client'],
+  de: ['Illustration einer fiktiven Logistikmitarbeiterin', 'Illustration des Kundenservice'],
+}[locale]
 const labels: Record<string,string> = {
   'about-us':'about-us', services:'services', fleet:'fleet', industries:'industries', contact:'contact',
   careers:'careers', news:'news', 'request-a-quote':'quote', 'privacy-policy':'privacy', cookies:'cookies', terms:'terms',
@@ -87,7 +93,8 @@ function mainContent() {
   const h=data.heading || [data.hero[0],data.hero[1],data.hero[2]]
   const paragraphs=data.paragraphs || []
   const image=page==='about-us'?aboutDetailImage:page==='services'?serviceImage:page==='fleet'?fleetImage:page==='industries'?industryImage:page==='contact'?contactImage:aboutImage
-  const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo"><img src="' + image + '" alt="' + imageText[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageText[1] + '</figcaption></figure></div></section>'
+  const imageDescription=page==='contact'?contactImageText:imageText
+  const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo"><img src="' + image + '" alt="' + imageDescription[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageDescription[1] + '</figcaption></figure></div></section>'
   const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article><span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p></article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
   return intro+cards
 }
