@@ -26,7 +26,7 @@ const icon = (name = 'arrow') => {
   return '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + (paths[name] || paths.arrow) + '</svg>'
 }
 
-const languages = ['en','pt','fr','de'] as const
+const languages = ['en','pt','fr','de','ru','uk'] as const
 const locale = currentLanguage()
 const copy = siteCopy[locale]
 const common = copy.common
@@ -35,6 +35,8 @@ const transportOptions: Record<string, [string, string][]> = {
   pt: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Expresso'], ['Dedicated', 'Dedicado']],
   fr: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Dédié']],
   de: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Express'], ['Dedicated', 'Direkttransport']],
+  ru: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Срочная перевозка'], ['Dedicated', 'Выделенный транспорт']],
+  uk: [['FTL', 'FTL'], ['LTL', 'LTL'], ['Express', 'Термінове перевезення'], ['Dedicated', 'Виділений транспорт']],
 }
 const page = (document.body.dataset.page || 'about-us') as PageId
 const href = (id: PageId) => pageUrl(locale,id)
@@ -43,12 +45,16 @@ const imageText = {
   pt: ['Transporte rodoviário Trevola Logistics, imagem ilustrativa', 'Imagem ilustrativa de transporte'],
   fr: ['Transport routier Trevola Logistics, image illustrative', 'Image illustrative de transport'],
   de: ['Straßentransport von Trevola Logistics, Beispielbild', 'Illustratives Transportbild'],
+  ru: ['Иллюстративное изображение автоперевозки Trevola Logistics', 'Иллюстративное изображение перевозки'],
+  uk: ['Ілюстративне зображення автоперевезення Trevola Logistics', 'Ілюстративне зображення перевезення'],
 }[locale]
 const contactImageText = {
   en: ['Illustrative image of a fictional logistics professional', 'Illustrative customer support image'],
   pt: ['Imagem ilustrativa de uma profissional fictícia da área logística', 'Imagem ilustrativa de apoio ao cliente'],
   fr: ['Image illustrative d’une professionnelle fictive de la logistique', 'Image illustrative du service client'],
   de: ['Illustration einer fiktiven Logistikmitarbeiterin', 'Illustration des Kundenservice'],
+  ru: ['Иллюстративное изображение вымышленной сотрудницы логистической компании', 'Иллюстративное изображение службы поддержки'],
+  uk: ['Ілюстративне зображення вигаданої працівниці логістичної компанії', 'Ілюстративне зображення служби підтримки'],
 }[locale]
 const labels: Record<string,string> = {
   'about-us':'about-us', services:'services', fleet:'fleet', industries:'industries', contact:'contact',
@@ -159,7 +165,7 @@ function render() {
   const app=document.querySelector<HTMLDivElement>('#page-app')
   if(!app)return
   const [title,description]=copy.seo[page]
-  document.documentElement.lang=locale==='pt'?'pt-PT':locale
+  document.documentElement.lang=locale==='pt'?'pt-PT':locale==='uk'?'uk-UA':locale
   document.title=title
   document.querySelector('meta[name="description"]')?.setAttribute('content',description)
   document.querySelector('meta[property="og:title"]')?.setAttribute('content',title)

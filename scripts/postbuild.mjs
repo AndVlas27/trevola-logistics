@@ -7,19 +7,23 @@ const builtAssets = await readdir(join(out, 'assets'))
 const heroAsset = builtAssets.find(file => file.startsWith('hero-production-') && file.endsWith('.jpg'))
 const aboutAsset = builtAssets.find(file => file.startsWith('trevola-loading-production-') && file.endsWith('.jpg'))
 const base = 'https://www.trevolalogistics.com'
-const langs = ['en', 'pt', 'fr', 'de']
+const langs = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
 const pages = ['home', 'about-us', 'services', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
 const nav = {
   en: { home:'Home', 'about-us':'About Us', services:'Services', fleet:'Fleet', industries:'Industries', 'request-a-quote':'Request a Quote', contact:'Contact', 'privacy-policy':'Privacy Policy', cookies:'Cookie Policy', terms:'Terms & Conditions', careers:'Careers', news:'News' },
   pt: { home:'Início', 'about-us':'Sobre nós', services:'Serviços', fleet:'Rede de transporte', industries:'Setores', 'request-a-quote':'Pedir orçamento', contact:'Contactos', 'privacy-policy':'Política de Privacidade', cookies:'Política de Cookies', terms:'Termos e Condições', careers:'Carreiras', news:'Notícias' },
   fr: { home:'Accueil', 'about-us':'À propos', services:'Services', fleet:'Réseau', industries:'Secteurs', 'request-a-quote':'Demander un devis', contact:'Contact', 'privacy-policy':'Confidentialité', cookies:'Politique de cookies', terms:'Conditions générales', careers:'Carrières', news:'Actualités' },
   de: { home:'Startseite', 'about-us':'Über uns', services:'Leistungen', fleet:'Netzwerk', industries:'Branchen', 'request-a-quote':'Angebot anfragen', contact:'Kontakt', 'privacy-policy':'Datenschutz', cookies:'Cookie-Richtlinie', terms:'AGB', careers:'Karriere', news:'Neuigkeiten' },
+  ru: { home:'Главная', 'about-us':'О компании', services:'Услуги', fleet:'Сеть перевозок', industries:'Отрасли', 'request-a-quote':'Запросить расчёт', contact:'Контакты', 'privacy-policy':'Политика конфиденциальности', cookies:'Файлы cookie', terms:'Условия использования', careers:'Карьера', news:'Новости' },
+  uk: { home:'Головна', 'about-us':'Про компанію', services:'Послуги', fleet:'Мережа перевезень', industries:'Галузі', 'request-a-quote':'Запросити розрахунок', contact:'Контакти', 'privacy-policy':'Політика конфіденційності', cookies:'Файли cookie', terms:'Умови використання', careers:'Кар’єра', news:'Новини' },
 }
 const descriptions = {
   en:'International road freight coordination between Portugal and Europe. Contact Trevola Logistics about routes, cargo and transport services.',
   pt:'Coordenação de transporte rodoviário internacional entre Portugal e a Europa. Contacte a Trevola Logistics sobre cargas e serviços.',
   fr:'Coordination du transport routier international entre le Portugal et l’Europe. Contactez Trevola Logistics pour vos expéditions.',
   de:'Koordination internationaler Straßentransporte zwischen Portugal und Europa. Kontaktieren Sie Trevola Logistics zu Fracht und Transport.',
+  ru:'Координация международных автомобильных перевозок из Португалии в Европу. Свяжитесь с Trevola Logistics по вопросам груза и маршрута.',
+  uk:'Координація міжнародних автомобільних перевезень із Португалії до Європи. Зверніться до Trevola Logistics щодо вантажу й маршруту.',
 }
 const sourceCopy = await readFile(new URL('../src/page-copy.ts', import.meta.url), 'utf8')
 const seoMeta = Object.fromEntries(langs.map(lang => {
@@ -30,7 +34,7 @@ const seoMeta = Object.fromEntries(langs.map(lang => {
   const entries = Object.fromEntries([...block.matchAll(/^\s*'?([\w-]+)'?: \['((?:\\.|[^'])*)', '((?:\\.|[^'])*)'\],?$/gm)].map(match => [match[1], [match[2].replaceAll("\\'", "'"), match[3].replaceAll("\\'", "'")]]))
   return [lang, entries]
 }))
-const localeTag = { en:'en', pt:'pt-PT', fr:'fr', de:'de' }
+const localeTag = { en:'en', pt:'pt-PT', fr:'fr', de:'de', ru:'ru', uk:'uk-UA' }
 const pathFor = (lang, page) => '/' + lang + '/' + (page === 'home' ? '' : page + '.html')
 const sourceFor = page => join(out, page === 'home' ? 'index.html' : page + '.html')
 function escape(value) { return value.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;') }
@@ -59,7 +63,7 @@ for (const page of pages) {
       .replace(/<meta name="description" content="[^"]*"\s*\/?>/, '<meta name="description" content="' + escape(pageDescription) + '">')
       .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, '<link rel="canonical" href="' + canonical + '">')
       .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, '<meta property="og:url" content="' + canonical + '">')
-      .replace(/<meta property="og:locale" content="[^"]*"\s*\/?>/, '<meta property="og:locale" content="' + ({en:'en_US',pt:'pt_PT',fr:'fr_FR',de:'de_DE'}[lang]) + '">')
+      .replace(/<meta property="og:locale" content="[^"]*"\s*\/?>/, '<meta property="og:locale" content="' + ({en:'en_US',pt:'pt_PT',fr:'fr_FR',de:'de_DE',ru:'ru_RU',uk:'uk_UA'}[lang]) + '">')
       .replace(/<meta property="og:title" content="[^"]*"\s*\/?>/, '<meta property="og:title" content="' + escape(title) + '">')
       .replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, '<meta property="og:description" content="' + escape(pageDescription) + '">')
       .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, '<meta name="twitter:title" content="' + escape(title) + '">')

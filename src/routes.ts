@@ -1,7 +1,7 @@
 import type { Language } from './i18n'
 import type { PageId } from './page-copy'
 
-export const languages: Language[] = ['en', 'pt', 'fr', 'de']
+export const languages: Language[] = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
 
 export function pageUrl(language: Language, page: PageId): string {
   const filename = page === 'home' ? '' : page + '.html'
