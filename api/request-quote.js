@@ -21,11 +21,14 @@ function validate(data) {
   const required = [
     'company', 'contact', 'email', 'phone', 'pickupCountry', 'pickupCity',
     'deliveryCountry', 'deliveryCity', 'transport', 'cargo', 'pallets',
-    'weight', 'volume', 'loadingDate', 'additional',
+    'weight', 'volume', 'loadingDate',
   ]
   if (!data || typeof data !== 'object' || Array.isArray(data)) return 'invalid'
   if (required.some((key) => typeof data[key] !== 'string' || !data[key].trim())) return 'missing'
   if (required.some((key) => data[key].length > MAX_FIELD_LENGTH)) return 'too_long'
+  if (data.additional !== undefined && typeof data.additional !== 'string') return 'invalid'
+  if (typeof data.additional === 'string' && data.additional.length > MAX_FIELD_LENGTH) return 'too_long'
+  data.additional ??= ''
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return 'email'
   if (!ALLOWED_TRANSPORTS.has(data.transport)) return 'transport'
   if (!Number.isInteger(Number(data.pallets)) || Number(data.pallets) < 1) return 'pallets'
