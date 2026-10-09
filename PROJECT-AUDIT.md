@@ -1,34 +1,34 @@
-# Revisão do projeto Trevola Logistics
+# Revisão do website Trevola Logistics
 
 ## Alterações aplicadas
 
-- Atualizada a paleta para azul-marinho, azul e ciano, com detalhes verdes e menos tons laranja; logótipo, fotografias, estrutura e composição das páginas foram mantidos.
-- Ativado o botão WhatsApp em todas as páginas, com o destino `https://wa.me/351962336946`, abertura em novo separador e `rel="noopener noreferrer"`.
-- Corrigidos os textos em inglês que apareciam na chamada final da página inicial em português.
-- Traduzidos os rótulos das opções de transporte, o número do alvará e o nome acessível do botão WhatsApp nos idiomas disponíveis.
-- Removidos o contador de demonstração e os logótipos Vite/TypeScript sem referências no projeto.
+- Atualizados os botões WhatsApp da página inicial e das páginas internas para `https://wa.me/351928338946`.
+- Alinhado o logótipo do cabeçalho e rodapé com a referência azul e verde, incluindo uma versão otimizada a 800 × 267 px.
+- Atualizadas as fotografias principais da frota e a imagem Open Graph para usar o novo grafismo nos camiões.
+- Atualizado o favicon para a paleta azul-marinho e verde.
+- Removidos ficheiros de arranque e imagens antigas sem referências no código: contador de demonstração, logótipos Vite/TypeScript e imagens originais duplicadas do logo e da frota.
 
-## Verificações
+## Verificações efetuadas
 
-- `npm run build`: concluído sem erros de TypeScript ou Vite.
-- Função de orçamento: verificados método HTTP, rejeição de origem externa, validação de pedido inválido e resposta de configuração ausente.
-- Build estático: 48 rotas localizadas (12 páginas em inglês, português, francês e alemão), 48 entradas no sitemap e nenhuma referência local a asset em falta.
-- Links externos com `target="_blank"` incluem `rel="noopener noreferrer"`.
-- A configuração Vercel existente continua a usar `npm run build`, saída `dist`, cabeçalhos de segurança e a função `api/request-quote.js`.
+- `npm run build`: compilação TypeScript, build Vite e geração de páginas concluídas sem erros.
+- Build gerou 61 documentos HTML, incluindo 48 páginas localizadas, e o sitemap contém 48 URLs localizadas.
+- Pesquisa na build final não encontrou o número antigo nem links WhatsApp com destinos inesperados; o destino novo está presente nos bundles.
+- Testes diretos da função de orçamento: método não permitido (405), origem externa (403), tipo de conteúdo incorreto (415), JSON inválido (400), dados incompletos (400) e honeypot (202) tiveram as respostas esperadas.
+- Os links externos identificados com `target="_blank"` incluem `rel="noopener noreferrer"`.
+- Vite processou todas as importações de imagens e estilos usados na build.
 
-## Limitações a resolver antes de lançar
+## Estado de publicação e serviços
 
-- O envio efetivo do formulário exige `RESEND_API_KEY` e `RESEND_FROM_EMAIL` configurados nas variáveis de ambiente da Vercel e um remetente validado no Resend. Sem estas credenciais, o endpoint responde que o envio não está configurado.
-- Não foram encontrados endereços oficiais de LinkedIn ou Facebook no projeto; não foram inventados links.
-- O website é Vite + TypeScript sem React. A compatibilidade React não se aplica ao código atual.
-- O site estático pode ser servido pela Cloudflare, mas a função de email usa o formato da Vercel. Para executar o formulário em Cloudflare Pages, será necessária uma função equivalente em Cloudflare Pages Functions.
-- Não foi possível executar `npm ci`: o ambiente não conseguiu alcançar `registry.npmjs.org`. O build passou com as dependências já instaladas no ambiente.
-- O browser isolado não conseguiu aceder ao servidor local de preview, por restrições de socket do ambiente. Assim, o comportamento foi verificado por build e auditorias estáticas/da função; não se declara um teste visual completo em Chrome, Edge, Firefox, Safari ou dispositivos físicos.
-- As páginas legais ainda contêm dados de exemplo que devem ser revistos pela empresa antes de publicação.
+- A Vercel liga o projeto `trevola-logistics` ao repositório público `AndVlas27/trevola-logistics` e associa `www.trevolalogistics.com` à produção; o domínio sem `www` redireciona com HTTP 308.
+- A Resend mostra `trevolalogistics.com` como verificado, com DKIM e ambos os registos SPF verificados.
+- As variáveis partilhadas `RESEND_API_KEY` e `RESEND_FROM_EMAIL` aparecem associadas ao projeto `trevola-logistics` em Production e Preview. Os valores são secretos e não foram lidos; confirme que a chave é a nova chave criada após a rotação da chave exposta e que o remetente está autorizado na Resend.
+- A Cloudflare mostra o DNS como completo. Os registos do domínio raiz e `www` apontam para a Vercel em modo apenas DNS; os registos MX e de email Zoho foram preservados.
+- As alterações do website ainda não foram publicadas. O repositório GitHub continha uma versão anterior; foi obtida uma cópia limpa para integrar a revisão.
 
-## Sugestões não aplicadas
+## Pontos a confirmar antes da publicação
 
-- Adicionar os URLs oficiais das redes sociais quando forem fornecidos.
-- Fazer a revisão visual em browsers e dispositivos reais depois do deployment de preview.
-- Se escolher Cloudflare Pages em vez de Vercel, adaptar e testar a função de orçamento para o runtime Cloudflare.
-- Completar e validar as páginas legais com a entidade jurídica, morada, retenção de dados e jurisdição aplicável.
+- O envio real de pedidos de orçamento depende de valores corretos para `RESEND_API_KEY` e `RESEND_FROM_EMAIL`. Os nomes e a associação ao projeto foram confirmados; os valores não podem ser verificados porque são secretos. Após publicação, deve ser enviado um pedido de teste e confirmada a entrega.
+- As páginas de privacidade e termos identificam-se como modelos por completar. Antes de as apresentar como páginas finais, a empresa deve fornecer e validar denominação social, morada, prazo de conservação, fornecedor e práticas de tratamento, e lei/jurisdição aplicáveis.
+- Não foram fornecidos URLs oficiais de redes sociais, por isso não foram inventados.
+- A versão de pré-visualização local não abriu no browser isolado desta sessão; não foi possível fazer uma verificação visual interativa em browsers ou dispositivos reais.
+- A pasta de trabalho não continha metadados Git. A integração com o repositório GitHub está em preparação; não foi feita publicação de produção.

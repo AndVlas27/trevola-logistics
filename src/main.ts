@@ -210,7 +210,7 @@ function render() {
     </main>
 
     <footer class="footer"><div class="container footer-main"><div class="footer-brand-block"><a class="footer-brand" href="index.html" aria-label="${t('homeLabel')}"><img src="${logo}" alt="Trevola Logistics" width="800" height="267" decoding="async"></a><p>${t('footerText')}</p></div><div class="footer-nav"><span>${t('footerExplore')}</span><a href="about-us.html">${t('navAbout')}</a><a href="services.html">${t('navServices')}</a><a href="fleet.html">${t('navNetwork')}</a><a href="industries.html">${t('navWhy')}</a><a href="contact.html">${t('navContact')}</a></div><div class="footer-contact"><span>${t('footerContact')}</span><a href="mailto:info@trevolalogistics.com">info@trevolalogistics.com</a><a href="tel:+351928338946">+351 928 338 946</a><a href="https://www.trevolalogistics.com" target="_blank" rel="noopener noreferrer">www.trevolalogistics.com</a></div></div><div class="container footer-bottom"><span>© ${new Date().getFullYear()} Trevola Logistics. ${t('footerRights')}</span><a href="#home">${t('backTop')} ↑</a></div></footer>
-    <a class="whatsapp-float" href="https://wa.me/351962336946" target="_blank" rel="noopener noreferrer" aria-label="${t('whatsappLabel')}" title="${t('whatsappLabel')}">${icon('whatsapp')}</a>
+    <a class="whatsapp-float" href="https://wa.me/351928338946" target="_blank" rel="noopener noreferrer" aria-label="${t('whatsappLabel')}" title="${t('whatsappLabel')}">${icon('whatsapp')}</a>
     <button class="back-top" type="button" aria-label="${t('backTop')}" title="${t('backTop')}">${icon('arrow')}</button>
   `
 

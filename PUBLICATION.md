@@ -124,13 +124,14 @@ variantes localizadas no build.
 
 ## Ações externas pendentes
 
-- Criar/selecionar o projeto e ligar o repositório na conta Vercel.
-- Adicionar `trevolalogistics.com` e `www.trevolalogistics.com` nas definições do
-  projeto.
-- Atualizar os registos DNS no fornecedor autoritativo; os valores finais só
-  aparecem no painel Vercel depois de associar o domínio.
-- Aguardar verificação e emissão automática do SSL pela Vercel.
-- Inserir as credenciais Resend em variáveis de ambiente Vercel, se o formulário
-  tiver de enviar pedidos por email.
-- Rever os modelos legais com os dados e práticas reais da empresa antes de
-  disponibilizar as páginas legais ao público.
+- O projeto da Vercel está ligado ao repositório GitHub; os domínios `www` e raiz
+  estão configurados e a zona DNS Cloudflare aparece completa.
+- A Resend confirma o domínio como verificado. As variáveis `RESEND_API_KEY` e
+  `RESEND_FROM_EMAIL` estão ligadas ao projeto em Production e Preview. Como os
+  valores são secretos, confirme que a chave nova foi usada e que o remetente
+  corresponde a um endereço autorizado na Resend.
+- Fazer um deployment de preview a partir das alterações e testar o formulário
+  com um pedido real, confirmando a entrega à caixa configurada.
+- Rever e completar os modelos legais antes de os apresentar como documentos
+  finais: falta validar denominação social, morada, prazo de conservação,
+  fornecedores/práticas reais de tratamento e lei/jurisdição aplicáveis.
