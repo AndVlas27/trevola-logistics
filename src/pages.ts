@@ -1,7 +1,10 @@
 import './style.css'
 import './pages.css'
-import heroImage from './assets/images/hero-production.jpg'
+import heroImage from './assets/images/hero-road-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
+import fleetImage from './assets/images/fleet-depot-production.jpg'
+import serviceImage from './assets/images/service-loading-production.jpg'
+import networkImage from './assets/images/warehouse-concept-branded.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 import { siteCopy, type PageId } from './page-copy'
 import { currentLanguage, pageUrl } from './routes'
@@ -81,7 +84,7 @@ function mainContent() {
   if (!data) return '<section class="detail-values section-pad"><div class="container empty-state"><h2>' + copy.seo[page][0] + '</h2><p>' + copy.seo[page][1] + '</p></div></section>'
   const h=data.heading || [data.hero[0],data.hero[1],data.hero[2]]
   const paragraphs=data.paragraphs || []
-  const image=(page==='about-us'||page==='industries'||page==='contact')?aboutImage:heroImage
+  const image=page==='fleet'?fleetImage:page==='services'?serviceImage:page==='industries'?networkImage:aboutImage
   const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo"><img src="' + image + '" alt="' + imageText[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageText[1] + '</figcaption></figure></div></section>'
   const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article><span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p></article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
   return intro+cards
@@ -148,7 +151,7 @@ function render() {
   document.querySelector('meta[property="og:description"]')?.setAttribute('content',description)
   const data=copy.pages[page]
   const hero=page==='privacy-policy'||page==='cookies'||page==='terms'?[copy.nav[labels[page]],copy.legal[page].title,'',copy.legal[page].note]:page==='careers'?[copy.nav.careers,copy.careers.emptyTitle,'',copy.careers.emptyText]:page==='news'?[copy.nav.news,copy.news.emptyTitle,'',copy.news.emptyText]:page==='request-a-quote'?[copy.nav.quote,copy.quote.fieldsTitle,'',copy.quote.intro]:data?.hero ?? copy.seo[page]
-  const image=page==='about-us'||page==='industries'||page==='contact'?aboutImage:heroImage
+  const image=heroImage
   app.innerHTML=header()+'<main id="page-main" class="detail-page"><section class="page-hero" style="--page-image:url(\''+image+'\')" aria-labelledby="page-title"><div class="page-hero-shade"></div><div class="container page-hero-inner"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="'+href('home')+'">'+copy.nav.home+'</a><span aria-hidden="true">/</span><span aria-current="page">'+hero[0]+'</span></nav><span class="page-hero-eyebrow"><i></i>'+hero[0]+'</span><h1 id="page-title">'+hero[1]+(hero[2]?'<br><em>'+hero[2]+'</em>':'')+'</h1><p>'+hero[3]+'</p>'+(page==='privacy-policy'||page==='cookies'||page==='terms'||page==='careers'||page==='news'?'':'<a class="button button-primary" href="'+href('request-a-quote')+'">'+copy.nav.quote+' '+icon()+'</a>')+'</div></section>'+mainContent()+footer()+'</main>'
   const menu=app.querySelector<HTMLButtonElement>('.menu-toggle')!,panel=app.querySelector<HTMLElement>('.nav-panel')!
   menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));menu.setAttribute('aria-label',open?common.menuOpen:common.menuClose);panel.classList.toggle('is-open',!open)})
