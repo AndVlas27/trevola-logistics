@@ -1,7 +1,8 @@
 # Trevola Logistics website
 
 Multilingual Vite + TypeScript website for Trevola Logistics, with English,
-Portuguese, French and German pages, quote-request form, and localized SEO URLs.
+Portuguese, French, German, Russian and Ukrainian pages, quote-request form,
+and localized SEO URLs.
 
 ## Requirements
 
@@ -81,9 +82,10 @@ vercel.json                Production output and response headers
 - The quote form only reports success after the email provider accepts the
   message. Without the Resend environment variables it reports that sending is
   not configured.
-- Privacy, cookies and terms content are translated drafts. Confirm the legal
-  entity, postal address, retention periods, providers and governing-law details
-  against the real business before publication.
+- The website displays the company name and NIF supplied by the operator and
+  omits the postal address at the operator’s request. Review legal notices
+  whenever the company’s actual data practices, suppliers or retention periods
+  change; the governing-law details in the terms still need confirmation.
 - No analytics or marketing scripts are included. Revisit cookie consent if
   optional tracking is introduced later.
 - The build was verified in this workspace. A visual/browser acceptance pass on

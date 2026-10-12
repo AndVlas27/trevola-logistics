@@ -17,6 +17,16 @@ const escapeHtml = (value) => value
   .replaceAll('"', '&quot;')
   .replaceAll("'", '&#39;')
 
+const headerText = (value) => value.replace(/[\r\n]+/g, ' ').trim()
+
+function todayInPortugal() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit',
+  }).formatToParts(new Date())
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]))
+  return `${values.year}-${values.month}-${values.day}`
+}
+
 function validate(data) {
   const required = [
     'company', 'contact', 'email', 'phone', 'pickupCountry', 'pickupCity',
@@ -37,7 +47,7 @@ function validate(data) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(data.loadingDate)) return 'date'
   const loadingDate = new Date(`${data.loadingDate}T00:00:00Z`)
   if (Number.isNaN(loadingDate.getTime()) || loadingDate.toISOString().slice(0, 10) !== data.loadingDate) return 'date'
-  if (data.loadingDate < new Date().toISOString().slice(0, 10)) return 'date'
+  if (data.loadingDate < todayInPortugal()) return 'date'
   if (data.website) return 'spam'
   return ''
 }
@@ -104,7 +114,7 @@ export default async function handler(request) {
           from: `Trevola Logistics Website <${from}>`,
           to: [INBOX],
           reply_to: data.email,
-          subject: `Road freight quote request · ${data.pickupCity} to ${data.deliveryCity}`,
+          subject: `Road freight quote request · ${headerText(data.pickupCity)} to ${headerText(data.deliveryCity)}`,
           text,
           html: `<div style="font-family:Arial,sans-serif;color:#172633"><h2>New Trevola Logistics quote request</h2><table style="border-collapse:collapse;width:100%">${html}</table></div>`,
         }),

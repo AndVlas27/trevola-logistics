@@ -18,8 +18,8 @@ npm run dev serves the static Vite pages. The Vercel function is available after
 
 ## International URLs
 
-The production build generates /en/, /pt/, /fr/, and /de/ routes for every page and writes corresponding canonical, hreflang, and sitemap entries. Legacy root-level HTML routes remain available as canonicalized aliases.
+The production build generates /en/, /pt/, /fr/, /de/, /ru/, and /uk/ routes for every page and writes corresponding canonical, hreflang, and sitemap entries. Legacy root-level HTML routes remain available as canonicalized aliases.
 
 ## Legal pages
 
-Privacy, cookie, and terms pages are translated drafts. Before publication, verify the registered entity, postal address, retention period, hosting/email providers, and governing-law details against actual company practices. Add consent management before enabling non-essential analytics or marketing storage.
+The privacy notice uses the company name, NIF, privacy email, providers, and retention periods supplied by the operator; it does not publish a postal address. Processing locations and sub-processors should be checked against the providers’ current terms. Governing-law details in the terms remain to be confirmed. No analytics or advertising scripts are included in the site code; review cookie consent before adding non-essential tracking.

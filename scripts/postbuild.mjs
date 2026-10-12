@@ -4,8 +4,24 @@ import { dirname, join } from 'node:path'
 const root = new URL('../dist/', import.meta.url)
 const out = decodeURIComponent(root.pathname.replace(/^\/([A-Za-z]:)/, '$1'))
 const builtAssets = await readdir(join(out, 'assets'))
-const heroAsset = builtAssets.find(file => file.startsWith('hero-production-') && file.endsWith('.jpg'))
-const aboutAsset = builtAssets.find(file => file.startsWith('trevola-loading-production-') && file.endsWith('.jpg'))
+const heroAssetByPage = {
+  home: 'hero-production-',
+  'about-us': 'trevola-loading-production-',
+  services: 'services-wall-logo-premium-',
+  trucks: 'trevola-truck-loading-',
+  vans: 'trevola-express-van-',
+  minitrucks: 'trevola-minitruck-',
+  fleet: 'trevola-fleet-lineup-premium-',
+  industries: 'industries-cargo-production-',
+  'request-a-quote': 'contact-coordinator-mural-',
+  contact: 'contact-communications-hero-',
+  careers: 'careers-team-hero-',
+  news: 'network-road-branded-',
+}
+const pageHeroAssets = Object.fromEntries(Object.entries(heroAssetByPage).map(([page, prefix]) => [
+  page,
+  builtAssets.find(file => file.startsWith(prefix) && /\.(avif|webp|jpe?g|png)$/i.test(file)),
+]))
 const base = 'https://www.trevolalogistics.com'
 const langs = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
 const pages = ['home', 'about-us', 'services', 'trucks', 'vans', 'minitrucks', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
@@ -77,7 +93,7 @@ for (const page of pages) {
       .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, '<meta name="twitter:title" content="' + escape(title) + '">')
       .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, '<meta name="twitter:description" content="' + escape(pageDescription) + '">')
     if (!html.includes('rel="preload" as="image"')) {
-      const image = ['about-us','industries','contact'].includes(page) ? aboutAsset : heroAsset
+      const image = pageHeroAssets[page]
       if (image) html = html.replace('</head>', '  <link rel="preload" as="image" href="/assets/' + image + '" fetchpriority="high">\n</head>')
     }
     if (!html.includes('rel="manifest"')) html = html.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest">\n</head>')
