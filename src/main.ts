@@ -1,10 +1,10 @@
 import './style.css'
-import heroImage from './assets/images/hero-production.jpg'
-import aboutImage from './assets/images/trevola-operations-control-premium.webp'
-import warehouseImage from './assets/images/network-road-branded.jpg'
-import truckServiceImage from './assets/images/trevola-truck-loading.jpg'
-import vanServiceImage from './assets/images/trevola-express-van.jpg'
-import minitruckServiceImage from './assets/images/trevola-minitruck.jpg'
+import heroImage from './assets/images/hero-clean-brand.webp'
+import aboutImage from './assets/images/about-loading-clean.webp'
+import warehouseImage from './assets/images/network-road-clean.webp'
+import truckServiceImage from './assets/images/truck-loading-clean.webp'
+import vanServiceImage from './assets/images/express-van-clean.webp'
+import minitruckServiceImage from './assets/images/minitruck-clean.webp'
 import logo from './assets/logo/trevola-logo-production.png'
 
 import { languageOptions, translations, type Language } from './i18n'
@@ -18,12 +18,12 @@ const services = [
 ]
 
 const serviceImageAlts: Record<Language, [string, string, string]> = {
-  pt: ['Camião Trevola Logistics numa zona de carga', 'Carrinha Trevola Logistics para transporte expresso', 'Minitir Trevola Logistics preparado para transportar mercadorias'],
-  fr: ['Camion Trevola Logistics dans une zone de chargement', 'Utilitaire Trevola Logistics pour le transport express', 'Minitruck Trevola Logistics prêt à transporter des marchandises'],
-  en: ['Trevola Logistics truck at a loading area', 'Trevola Logistics van for express transport', 'Trevola Logistics minitruck ready to carry freight'],
-  de: ['Lkw von Trevola Logistics im Ladebereich', 'Transporter von Trevola Logistics für Expressfahrten', 'Minitruck von Trevola Logistics für den Gütertransport'],
-  ru: ['Грузовик Trevola Logistics в зоне погрузки', 'Фургон Trevola Logistics для срочной перевозки', 'Малотоннажный грузовик Trevola Logistics для перевозки грузов'],
-  uk: ['Вантажівка Trevola Logistics у зоні завантаження', 'Фургон Trevola Logistics для термінових перевезень', 'Малотоннажна вантажівка Trevola Logistics для перевезення вантажів'],
+  pt: ['Imagem ilustrativa de um camião de carga geral', 'Imagem ilustrativa de uma carrinha para transporte expresso', 'Imagem ilustrativa de um veículo de transporte intermédio'],
+  fr: ['Image illustrative d’un camion de transport de marchandises', 'Image illustrative d’un utilitaire de transport express', 'Image illustrative d’un véhicule de transport intermédiaire'],
+  en: ['Illustrative image of a freight truck', 'Illustrative image of an express van', 'Illustrative image of a medium-duty delivery truck'],
+  de: ['Beispielbild eines Lkw für den Gütertransport', 'Beispielbild eines Express-Transporters', 'Beispielbild eines mittelschweren Lieferwagens'],
+  ru: ['Иллюстрация грузового автомобиля', 'Иллюстрация фургона для срочной доставки', 'Иллюстрация грузового автомобиля средней грузоподъёмности'],
+  uk: ['Ілюстрація вантажного автомобіля', 'Ілюстрація фургона для термінової доставки', 'Ілюстрація вантажного автомобіля середньої вантажності'],
 }
 
 const advantages = [

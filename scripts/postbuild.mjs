@@ -5,18 +5,18 @@ const root = new URL('../dist/', import.meta.url)
 const out = decodeURIComponent(root.pathname.replace(/^\/([A-Za-z]:)/, '$1'))
 const builtAssets = await readdir(join(out, 'assets'))
 const heroAssetByPage = {
-  home: 'hero-production-',
-  'about-us': 'trevola-loading-production-',
-  services: 'services-wall-logo-premium-',
-  trucks: 'trevola-truck-loading-',
-  vans: 'trevola-express-van-',
-  minitrucks: 'trevola-minitruck-',
-  fleet: 'trevola-fleet-lineup-premium-',
-  industries: 'industries-cargo-production-',
-  'request-a-quote': 'contact-coordinator-mural-',
+  home: 'hero-clean-brand-',
+  'about-us': 'about-loading-clean-',
+  services: 'services-warehouse-clean-',
+  trucks: 'truck-loading-clean-',
+  vans: 'express-van-clean-',
+  minitrucks: 'minitruck-clean-',
+  fleet: 'fleet-lineup-clean-',
+  industries: 'industries-cargo-clean-',
+  'request-a-quote': 'contact-coordinator-clean-',
   contact: 'contact-communications-hero-',
   careers: 'careers-team-hero-',
-  news: 'network-road-branded-',
+  news: 'network-road-clean-',
 }
 const pageHeroAssets = Object.fromEntries(Object.entries(heroAssetByPage).map(([page, prefix]) => [
   page,

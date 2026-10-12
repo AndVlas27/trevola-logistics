@@ -15,9 +15,9 @@ npm run build
 npm run preview
 ```
 
-O comando de build valida o TypeScript, compila as 12 páginas de entrada e gera
-em `dist/` as versões de inglês, português, francês e alemão. Também atualiza o
-sitemap localizado. O preview local serve o conteúdo final de `dist/`.
+O comando de build valida o TypeScript, compila 15 páginas em inglês, português,
+francês, alemão, russo e ucraniano, e atualiza o sitemap localizado. O preview
+local serve o conteúdo final de `dist/`.
 
 ## 2. Publicar na Vercel
 
@@ -124,7 +124,7 @@ variantes localizadas no build.
 
 ## Estado após publicação
 
-- A revisão está publicada em `https://www.trevolalogistics.com/pt/` pelo commit `0a1c613` na branch `main`; o deployment de produção da Vercel ficou Ready.
+- A revisão está publicada em `https://www.trevolalogistics.com/pt/` pela branch `main`; confirme o estado do deployment mais recente no painel Vercel.
 - A Resend confirma o domínio como verificado. As variáveis `RESEND_API_KEY` e `RESEND_FROM_EMAIL` estão ligadas ao projeto em Production e Preview, mas os valores secretos não foram lidos.
-- Ainda é necessário enviar um pedido de teste controlado e confirmar a entrega à caixa da empresa.
-- As páginas de privacidade e termos continuam como modelos por completar. Validar denominação social, morada, prazo de conservação, fornecedores/práticas reais de tratamento e lei/jurisdição aplicáveis.
+- O formulário já foi testado com dados fictícios e a Resend confirmou a entrega à caixa da empresa; não usar esse envio como pedido comercial real.
+- As páginas legais usam os dados fornecidos pela empresa e não publicam morada. Confirmar internamente se existe Encarregado de Proteção de Dados e se algum serviço de análise ou publicidade é usado fora do código do website.
