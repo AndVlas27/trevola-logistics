@@ -1,18 +1,18 @@
 import './style.css'
 import './pages.css'
-import aboutImage from './assets/images/about-loading-clean.webp'
-import fleetImage from './assets/images/fleet-lineup-clean.webp'
-import truckServiceImage from './assets/images/truck-loading-clean.webp'
-import vanServiceImage from './assets/images/express-van-clean.webp'
-import minitruckServiceImage from './assets/images/minitruck-clean.webp'
-import serviceImage from './assets/images/network-road-clean.webp'
-import serviceHeroImage from './assets/images/services-warehouse-clean.webp'
-import industryImage from './assets/images/industries-cargo-clean.webp'
-import contactImage from './assets/images/contact-coordinator-clean.webp'
+import aboutImage from './assets/images/trevola-loading-production.jpg'
+import fleetImage from './assets/images/fleet-warehouse-production.jpg'
+import truckServiceImage from './assets/images/trevola-truck-loading.jpg'
+import vanServiceImage from './assets/images/trevola-express-van.jpg'
+import minitruckServiceImage from './assets/images/trevola-minitruck.jpg'
+import serviceImage from './assets/images/services-coordinator-fictional.jpg'
+import serviceHeroImage from './assets/images/services-wall-logo-premium.jpg'
+import industryImage from './assets/images/industries-cargo-production.jpg'
+import contactImage from './assets/images/contact-coordinator-mural.jpg'
 import contactHeroImage from './assets/images/contact-communications-hero.jpg'
 import careersHeroImage from './assets/images/careers-team-hero.jpg'
-import networkImage from './assets/images/network-road-clean.webp'
-import fleetLineupImage from './assets/images/fleet-lineup-clean.webp'
+import networkImage from './assets/images/network-road-branded.jpg'
+import fleetLineupImage from './assets/images/trevola-fleet-lineup-premium.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 import { siteCopy, type PageId } from './page-copy'
 import { currentLanguage, pageUrl } from './routes'
@@ -47,12 +47,12 @@ const transportOptions: Record<string, [string, string][]> = {
 const page = (document.body.dataset.page || 'about-us') as PageId
 const href = (id: PageId) => pageUrl(locale,id)
 const imageText = {
-  en: ['Illustrative road freight image', 'Illustrative transport image'],
-  pt: ['Imagem ilustrativa de transporte rodoviário', 'Imagem ilustrativa de transporte'],
-  fr: ['Image illustrative de transport routier', 'Image illustrative de transport'],
-  de: ['Beispielbild eines Straßentransports', 'Illustratives Transportbild'],
-  ru: ['Иллюстрация автомобильной перевозки', 'Иллюстрация перевозки'],
-  uk: ['Ілюстрація автомобільного перевезення', 'Ілюстрація перевезення'],
+  en: ['Trevola Logistics road transport, illustrative image', 'Illustrative transport image'],
+  pt: ['Transporte rodoviário Trevola Logistics, imagem ilustrativa', 'Imagem ilustrativa de transporte'],
+  fr: ['Transport routier Trevola Logistics, image illustrative', 'Image illustrative de transport'],
+  de: ['Straßentransport von Trevola Logistics, Beispielbild', 'Illustratives Transportbild'],
+  ru: ['Иллюстративное изображение автоперевозки Trevola Logistics', 'Иллюстративное изображение перевозки'],
+  uk: ['Ілюстративне зображення автоперевезення Trevola Logistics', 'Ілюстративне зображення перевезення'],
 }[locale]
 const contactImageText = {
   en: ['Illustrative image of a fictional logistics professional', 'Illustrative customer support image'],
@@ -63,12 +63,12 @@ const contactImageText = {
   uk: ['Ілюстративне зображення вигаданої працівниці логістичної компанії', 'Ілюстративне зображення служби підтримки'],
 }[locale]
 const serviceImageText = {
-  en: ['Illustrative image of European road connections', 'Illustrative transport network image'],
-  pt: ['Imagem ilustrativa de ligações rodoviárias europeias', 'Imagem ilustrativa de uma rede de transporte'],
-  fr: ['Image illustrative de liaisons routières européennes', 'Image illustrative d’un réseau de transport'],
-  de: ['Illustration europäischer Straßenverbindungen', 'Illustration eines Transportnetzwerks'],
-  ru: ['Иллюстративное изображение европейских автомобильных маршрутов', 'Иллюстрация транспортной сети'],
-  uk: ['Ілюстративне зображення європейських автомобільних маршрутів', 'Ілюстрація транспортної мережі'],
+  en: ['Illustrative image of a fictional logistics coordinator in a warehouse', 'Illustrative logistics coordination image'],
+  pt: ['Imagem ilustrativa de uma profissional fictícia de logística num armazém', 'Imagem ilustrativa de coordenação logística'],
+  fr: ['Image illustrative d’une coordinatrice logistique fictive dans un entrepôt', 'Image illustrative de coordination logistique'],
+  de: ['Illustration einer fiktiven Logistikmitarbeiterin in einem Lager', 'Illustration der Logistikkoordination'],
+  ru: ['Иллюстративное изображение вымышленной сотрудницы логистики на складе', 'Иллюстрация координации логистики'],
+  uk: ['Ілюстративне зображення вигаданої працівниці логістики на складі', 'Ілюстрація координації логістики'],
 }[locale]
 const labels: Record<string,string> = {
   'about-us':'about-us', services:'services', fleet:'fleet', industries:'industries', contact:'contact',
@@ -106,20 +106,7 @@ function mainContent() {
   if (page==='request-a-quote') return quote()
   if (page==='privacy-policy'||page==='cookies'||page==='terms') {
     const legal=copy.legal[page]
-    const legalFacts: Record<string, { recipientsTitle: string; recipients: string; cookiesTitle: string; cookies: string; termsTitle: string; terms: string }> = {
-      pt: { recipientsTitle: 'Fundamento e destinatários', recipients: 'Os pedidos de orçamento são tratados para responder ao pedido e preparar uma eventual proposta. As mensagens são enviadas para info@trevolalogistics.com através da Resend e da caixa empresarial fornecida pela Zoho. A Vercel assegura o alojamento e as funções do website; a Cloudflare assegura o DNS.', cookiesTitle: 'Tecnologias essenciais', cookies: 'O website utiliza os serviços de alojamento e infraestrutura da Vercel e da Cloudflare para funcionar e ser protegido. Os respetivos fornecedores podem tratar dados técnicos necessários à prestação desses serviços, de acordo com as suas políticas.', termsTitle: 'Identificação e contacto', terms: 'O website é operado pela Trevola Logistics, Lda. (NIF 516173812). Para questões sobre estes termos, contacte info@trevolalogistics.com.' },
-      en: { recipientsTitle: 'Legal basis and recipients', recipients: 'Quote requests are processed to respond and prepare a possible quotation. Messages are sent to info@trevolalogistics.com using Resend and the business mailbox provided by Zoho. Vercel provides website hosting and backend functions; Cloudflare provides DNS.', cookiesTitle: 'Essential technologies', cookies: 'The website relies on Vercel and Cloudflare hosting and infrastructure services to operate and remain secure. These providers may process technical data needed to deliver those services, under their respective policies.', termsTitle: 'Operator details and contact', terms: 'The website is operated by Trevola Logistics, Lda. (Portuguese tax number, NIF: 516173812). For questions about these terms, contact info@trevolalogistics.com.' },
-      fr: { recipientsTitle: 'Base juridique et destinataires', recipients: 'Les demandes de devis sont traitées afin d’y répondre et de préparer une éventuelle proposition. Les messages sont envoyés à info@trevolalogistics.com via Resend et la messagerie professionnelle fournie par Zoho. Vercel assure l’hébergement et les fonctions du site ; Cloudflare fournit le DNS.', cookiesTitle: 'Technologies essentielles', cookies: 'Le site s’appuie sur les services d’hébergement et d’infrastructure de Vercel et Cloudflare pour fonctionner et rester sécurisé. Ces fournisseurs peuvent traiter les données techniques nécessaires à leurs services, conformément à leurs politiques respectives.', termsTitle: 'Identification et contact', terms: 'Le site est exploité par Trevola Logistics, Lda. (NIF portugais : 516173812). Pour toute question concernant ces conditions, contactez info@trevolalogistics.com.' },
-      de: { recipientsTitle: 'Rechtsgrundlage und Empfänger', recipients: 'Angebotsanfragen werden bearbeitet, um die Anfrage zu beantworten und ein mögliches Angebot vorzubereiten. Nachrichten werden über Resend und das von Zoho bereitgestellte Geschäftspostfach an info@trevolalogistics.com gesendet. Vercel stellt Hosting und Backend-Funktionen bereit; Cloudflare stellt DNS bereit.', cookiesTitle: 'Erforderliche Technologien', cookies: 'Die Website nutzt Hosting- und Infrastrukturdienste von Vercel und Cloudflare, um zu funktionieren und geschützt zu bleiben. Diese Anbieter können technische Daten verarbeiten, die für ihre Dienste erforderlich sind, gemäß ihren jeweiligen Richtlinien.', termsTitle: 'Betreiber und Kontakt', terms: 'Die Website wird von Trevola Logistics, Lda. (portugiesische Steuernummer, NIF: 516173812) betrieben. Bei Fragen zu diesen Bedingungen wenden Sie sich an info@trevolalogistics.com.' },
-      ru: { recipientsTitle: 'Правовое основание и получатели', recipients: 'Запросы расчёта стоимости обрабатываются для ответа и подготовки возможного предложения. Сообщения направляются на info@trevolalogistics.com через Resend и корпоративную почту, предоставленную Zoho. Vercel обеспечивает хостинг и серверные функции сайта; Cloudflare предоставляет DNS.', cookiesTitle: 'Необходимые технологии', cookies: 'Для работы и защиты сайта используются услуги хостинга и инфраструктуры Vercel и Cloudflare. Эти поставщики могут обрабатывать технические данные, необходимые для оказания услуг, в соответствии со своими правилами.', termsTitle: 'Оператор и контакты', terms: 'Сайт принадлежит Trevola Logistics, Lda. (налоговый номер Португалии, NIF: 516173812). По вопросам об этих условиях пишите на info@trevolalogistics.com.' },
-      uk: { recipientsTitle: 'Правова підстава й одержувачі', recipients: 'Запити щодо розрахунку вартості обробляються, щоб надати відповідь і підготувати можливу пропозицію. Повідомлення надсилаються на info@trevolalogistics.com через Resend і корпоративну пошту, яку надає Zoho. Vercel забезпечує хостинг і серверні функції сайту; Cloudflare надає DNS.', cookiesTitle: 'Необхідні технології', cookies: 'Для роботи й захисту сайту використовуються послуги хостингу та інфраструктури Vercel і Cloudflare. Ці постачальники можуть обробляти технічні дані, необхідні для надання послуг, відповідно до власних правил.', termsTitle: 'Оператор і контакти', terms: 'Сайт належить Trevola Logistics, Lda. (податковий номер Португалії, NIF: 516173812). Із запитаннями щодо цих умов звертайтеся на info@trevolalogistics.com.' },
-    }
-    const facts=legalFacts[locale]
-    let sections=legal.sections
-    if (page==='privacy-policy') sections=sections.slice(0,4).map((section,index)=>index===2?{ title: facts.recipientsTitle, text: facts.recipients }:section)
-    if (page==='cookies') sections=sections.map((section,index)=>index===1?{ title: facts.cookiesTitle, text: facts.cookies }:section)
-    if (page==='terms') sections=sections.slice(0,-1).concat([{ title: facts.termsTitle, text: facts.terms }])
-    return '<section class="detail-values section-pad"><div class="container legal-content"><div class="page-section-heading"><h2>' + legal.title + '</h2></div>' + sections.map(section=>'<article><h3>' + section.title + '</h3><p>' + section.text + '</p></article>').join('') + '</div></section>'
+    return '<section class="detail-values section-pad"><div class="container legal-content"><div class="page-section-heading"><h2>' + legal.title + '</h2></div>' + legal.sections.map(section=>'<article><h3>' + section.title + '</h3><p>' + section.text + '</p></article>').join('') + '<p class="industry-note">' + legal.note + '</p></div></section>'
   }
   if (page==='careers') return '<section class="detail-values section-pad"><div class="container empty-state"><h2>' + copy.careers.emptyTitle + '</h2><p>' + copy.careers.emptyText + '</p><a class="button button-primary" href="mailto:info@trevolalogistics.com">' + copy.careers.button + '</a></div></section>'
   if (page==='news') return '<section class="detail-values section-pad"><div class="container empty-state"><h2>' + copy.news.emptyTitle + '</h2><p>' + copy.news.emptyText + '</p></div></section>'
