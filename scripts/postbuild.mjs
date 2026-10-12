@@ -8,14 +8,14 @@ const heroAsset = builtAssets.find(file => file.startsWith('hero-production-') &
 const aboutAsset = builtAssets.find(file => file.startsWith('trevola-loading-production-') && file.endsWith('.jpg'))
 const base = 'https://www.trevolalogistics.com'
 const langs = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
-const pages = ['home', 'about-us', 'services', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
+const pages = ['home', 'about-us', 'services', 'trucks', 'vans', 'minitrucks', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
 const nav = {
-  en: { home:'Home', 'about-us':'About Us', services:'Services', fleet:'Fleet', industries:'Industries', 'request-a-quote':'Request a Quote', contact:'Contact', 'privacy-policy':'Privacy Policy', cookies:'Cookie Policy', terms:'Terms & Conditions', careers:'Careers', news:'News' },
-  pt: { home:'Início', 'about-us':'Sobre nós', services:'Serviços', fleet:'Rede de transporte', industries:'Setores', 'request-a-quote':'Pedir orçamento', contact:'Contactos', 'privacy-policy':'Política de Privacidade', cookies:'Política de Cookies', terms:'Termos e Condições', careers:'Carreiras', news:'Notícias' },
-  fr: { home:'Accueil', 'about-us':'À propos', services:'Services', fleet:'Réseau', industries:'Secteurs', 'request-a-quote':'Demander un devis', contact:'Contact', 'privacy-policy':'Confidentialité', cookies:'Politique de cookies', terms:'Conditions générales', careers:'Carrières', news:'Actualités' },
-  de: { home:'Startseite', 'about-us':'Über uns', services:'Leistungen', fleet:'Netzwerk', industries:'Branchen', 'request-a-quote':'Angebot anfragen', contact:'Kontakt', 'privacy-policy':'Datenschutz', cookies:'Cookie-Richtlinie', terms:'AGB', careers:'Karriere', news:'Neuigkeiten' },
-  ru: { home:'Главная', 'about-us':'О компании', services:'Услуги', fleet:'Сеть перевозок', industries:'Отрасли', 'request-a-quote':'Запросить расчёт', contact:'Контакты', 'privacy-policy':'Политика конфиденциальности', cookies:'Файлы cookie', terms:'Условия использования', careers:'Карьера', news:'Новости' },
-  uk: { home:'Головна', 'about-us':'Про компанію', services:'Послуги', fleet:'Мережа перевезень', industries:'Галузі', 'request-a-quote':'Запросити розрахунок', contact:'Контакти', 'privacy-policy':'Політика конфіденційності', cookies:'Файли cookie', terms:'Умови використання', careers:'Кар’єра', news:'Новини' },
+  en: { home:'Home', 'about-us':'About Us', services:'Services', trucks:'Trucks', vans:'Express Vans', minitrucks:'Minitrucks', fleet:'Fleet', industries:'Industries', 'request-a-quote':'Request a Quote', contact:'Contact', 'privacy-policy':'Privacy Policy', cookies:'Cookie Policy', terms:'Terms & Conditions', careers:'Careers', news:'News' },
+  pt: { home:'Início', 'about-us':'Sobre nós', services:'Serviços', trucks:'Camiões', vans:'Carrinhas expresso', minitrucks:'Minitir', fleet:'Rede de transporte', industries:'Setores', 'request-a-quote':'Pedir orçamento', contact:'Contactos', 'privacy-policy':'Política de Privacidade', cookies:'Política de Cookies', terms:'Termos e Condições', careers:'Carreiras', news:'Notícias' },
+  fr: { home:'Accueil', 'about-us':'À propos', services:'Services', trucks:'Camions', vans:'Utilitaires express', minitrucks:'Minitrucks', fleet:'Réseau', industries:'Secteurs', 'request-a-quote':'Demander un devis', contact:'Contact', 'privacy-policy':'Confidentialité', cookies:'Politique de cookies', terms:'Conditions générales', careers:'Carrières', news:'Actualités' },
+  de: { home:'Startseite', 'about-us':'Über uns', services:'Leistungen', trucks:'Lkw', vans:'Express-Transporter', minitrucks:'Minitrucks', fleet:'Netzwerk', industries:'Branchen', 'request-a-quote':'Angebot anfragen', contact:'Kontakt', 'privacy-policy':'Datenschutz', cookies:'Cookie-Richtlinie', terms:'AGB', careers:'Karriere', news:'Neuigkeiten' },
+  ru: { home:'Главная', 'about-us':'О компании', services:'Услуги', trucks:'Грузовые автомобили', vans:'Экспресс-фургоны', minitrucks:'Малотоннажные автомобили', fleet:'Сеть перевозок', industries:'Отрасли', 'request-a-quote':'Запросить расчёт', contact:'Контакты', 'privacy-policy':'Политика конфиденциальности', cookies:'Файлы cookie', terms:'Условия использования', careers:'Карьера', news:'Новости' },
+  uk: { home:'Головна', 'about-us':'Про компанію', services:'Послуги', trucks:'Вантажівки', vans:'Експрес-фургони', minitrucks:'Малотоннажні автомобілі', fleet:'Мережа перевезень', industries:'Галузі', 'request-a-quote':'Запросити розрахунок', contact:'Контакти', 'privacy-policy':'Політика конфіденційності', cookies:'Файли cookie', terms:'Умови використання', careers:'Кар’єра', news:'Новини' },
 }
 const descriptions = {
   en:'International road freight coordination between Portugal and Europe. Contact Trevola Logistics about routes, cargo and transport services.',
@@ -34,6 +34,14 @@ const seoMeta = Object.fromEntries(langs.map(lang => {
   const entries = Object.fromEntries([...block.matchAll(/^\s*'?([\w-]+)'?: \['((?:\\.|[^'])*)', '((?:\\.|[^'])*)'\],?$/gm)].map(match => [match[1], [match[2].replaceAll("\\'", "'"), match[3].replaceAll("\\'", "'")]]))
   return [lang, entries]
 }))
+const vehicleDescriptions = {
+  en: { trucks:'Curtainsider and refrigerated transport for general cargo, with express team driving, GPS monitoring and ADR coordination where suitable.', vans:'Direct express van transport for urgent shipments that fit the available vehicle, route and delivery window.', minitrucks:'Intermediate transport capacity for general and palletised goods, with express options subject to route and availability.' },
+  pt: { trucks:'Transporte de carga geral em camião de lona ou frigorífico, com opção expresso com dois motoristas, GPS e ADR quando adequado.', vans:'Transporte expresso direto em carrinha para cargas compatíveis com o veículo, percurso e prazo disponível.', minitrucks:'Capacidade intermédia para carga geral e paletizada, com opção expresso conforme percurso e disponibilidade.' },
+  fr: { trucks:'Transport de marchandises générales en camion bâché ou frigorifique, avec express à deux conducteurs, GPS et ADR si adapté.', vans:'Transport express direct en utilitaire pour les marchandises adaptées au véhicule, à l’itinéraire et au délai.', minitrucks:'Capacité intermédiaire pour marchandises générales et palettisées, avec option express selon le trajet et la disponibilité.' },
+  de: { trucks:'Allgemeine Güter im Planen- oder Kühlfahrzeug, mit Express-Zweifahrerbetrieb, GPS und ADR nach Eignung.', vans:'Direkter Express-Transporter für dringende Sendungen passend zu Fahrzeug, Route und Zeitfenster.', minitrucks:'Mittlere Kapazität für allgemeine und palettierte Güter, Express je nach Route und Verfügbarkeit.' },
+  ru: { trucks:'Перевозка обычных грузов тентованным или рефрижераторным автомобилем; экспресс с двумя водителями, GPS и ADR при наличии условий.', vans:'Прямая экспресс-доставка фургоном для грузов, подходящих по маршруту, вместимости и срокам.', minitrucks:'Промежуточная вместимость для обычных и палетированных грузов, экспресс зависит от маршрута и наличия.' },
+  uk: { trucks:'Перевезення звичайних вантажів тентованим або рефрижераторним автомобілем; експрес із двома водіями, GPS та ADR за відповідних умов.', vans:'Пряма експрес-доставка фургоном для вантажів, що відповідають маршруту, місткості й строкам.', minitrucks:'Проміжна місткість для звичайних і палетованих вантажів; експрес залежить від маршруту та наявності.' },
+}
 const localeTag = { en:'en', pt:'pt-PT', fr:'fr', de:'de', ru:'ru', uk:'uk-UA' }
 const pathFor = (lang, page) => '/' + lang + '/' + (page === 'home' ? '' : page + '.html')
 const sourceFor = page => join(out, page === 'home' ? 'index.html' : page + '.html')
@@ -53,7 +61,7 @@ for (const page of pages) {
     await copyFile(sourceFor(page), target)
     let html = template
     const title = seoMeta[lang][page]?.[0] || (page === 'home' ? 'Trevola Logistics | ' + nav[lang].home : nav[lang][page] + ' | Trevola Logistics')
-    const pageDescription = seoMeta[lang][page]?.[1] || descriptions[lang]
+    const pageDescription = seoMeta[lang][page]?.[1] || vehicleDescriptions[lang]?.[page] || descriptions[lang]
     const canonical = base + pathFor(lang, page)
     const alternates = langs.map(code => '<link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '">').join('\n  ')
       + '\n  <link rel="alternate" hreflang="x-default" href="' + base + pathFor('en',page) + '">'
