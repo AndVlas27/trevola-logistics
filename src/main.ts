@@ -2,6 +2,10 @@ import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
 import warehouseImage from './assets/images/network-road-branded.jpg'
+import fleetLineupImage from './assets/images/trevola-fleet-lineup.png'
+import truckImage from './assets/images/trevola-truck-loading.png'
+import vanImage from './assets/images/trevola-express-van.png'
+import minitruckImage from './assets/images/trevola-minitruck.png'
 import logo from './assets/logo/trevola-logo-production.png'
 
 import { languageOptions, translations, type Language } from './i18n'
@@ -9,12 +13,9 @@ import { pageUrl } from './routes'
 import { siteCopy } from './page-copy'
 
 const services = [
-  { icon: 'truck', title: 'service1Title', text: 'service1Text' },
-  { icon: 'boxes', title: 'service2Title', text: 'service2Text' },
-  { icon: 'clock', title: 'service3Title', text: 'service3Text' },
-  { icon: 'route', title: 'service4Title', text: 'service4Text' },
-  { icon: 'globe', title: 'service5Title', text: 'service5Text' },
-  { icon: 'support', title: 'service6Title', text: 'service6Text' },
+  { icon: 'truck', title: 'service1Title', text: 'service1Text', image: truckImage },
+  { icon: 'route', title: 'service2Title', text: 'service2Text', image: vanImage },
+  { icon: 'boxes', title: 'service3Title', text: 'service3Text', image: minitruckImage },
 ]
 
 const advantages = [
@@ -194,7 +195,7 @@ function render() {
 
       <section class="stats-band" aria-label="${t('statsEyebrow')}"><div class="container stats-grid"><div class="stats-intro" data-reveal><span class="eyebrow eyebrow-light"><span class="eyebrow-line" aria-hidden="true"></span>${t('statsEyebrow')}</span><h2>${t('statsTitle')}<em>${t('statsAccent')}</em></h2></div><div class="stat-item" data-reveal><strong>FTL</strong><span>${t('statCountries')}</span></div><div class="stat-item" data-reveal><strong>LTL</strong><span>${t('statSupport')}</span></div><div class="stat-item" data-reveal><strong>EXPRESS</strong><span>${t('statShipments')}</span></div><div class="stat-item" data-reveal><strong>DEDICATED</strong><span>${t('statOnTime')}</span></div></div></section>
 
-      <section id="services" class="services section-pad" aria-labelledby="services-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('servicesEyebrow')}</span><h2 id="services-title">${t('servicesTitle')}<br><em>${t('servicesAccent')}</em></h2></div><p>${t('servicesDescription')}</p></div><div class="service-grid">${services.map((service, index) => `<article class="service-card" data-reveal style="--reveal-delay:${index * 65}ms"><div class="service-top"><span class="service-icon">${icon(service.icon)}</span><span class="service-number">0${index + 1}</span></div><h3>${t(service.title)}</h3><p>${t(service.text)}</p><a href="#contact" aria-label="${t('serviceAsk')} ${t(service.title)}">${icon('arrow')}</a></article>`).join('')}</div></div></section>
+      <section id="services" class="services section-pad" aria-labelledby="services-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('servicesEyebrow')}</span><h2 id="services-title">${t('servicesTitle')}<br><em>${t('servicesAccent')}</em></h2></div><p>${t('servicesDescription')}</p></div><figure class="fleet-lineup" data-reveal><img src="${fleetLineupImage}" alt="${t('servicesTitle')} ${t('servicesAccent')}" width="2048" height="750" loading="lazy" decoding="async"><figcaption>${t('servicesDescription')}</figcaption></figure><div class="service-grid">${services.map((service, index) => '<article class="service-card vehicle-service-card" data-reveal style="--reveal-delay:' + (index * 65) + 'ms"><img class="service-card-image" src="' + service.image + '" alt="' + t(service.title) + '" width="1536" height="1024" loading="lazy" decoding="async"><div class="service-top"><span class="service-icon">' + icon(service.icon) + '</span><span class="service-number">0' + (index + 1) + '</span></div><h3>' + t(service.title) + '</h3><p>' + t(service.text) + '</p><a href="' + pageUrl(currentLanguage, 'services') + '#vehicle-' + (index + 1) + '" aria-label="' + t('serviceAsk') + ' ' + t(service.title) + '">' + icon('arrow') + '</a></article>').join('')}</div></div></div></section>
 
       <section id="why-trevola" class="why-section section-pad" aria-labelledby="why-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('whyEyebrow')}</span><h2 id="why-title">${t('whyTitle')}<br><em>${t('whyAccent')}</em></h2></div><p>${t('whyDescription')}</p></div><div class="why-grid">${advantages.map((item, index) => `<article class="why-card" data-reveal style="--reveal-delay:${index * 80}ms"><span class="why-icon">${icon(item.icon)}</span><span class="why-number">0${index + 1}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></article>`).join('')}</div></div></section>
 

@@ -37,6 +37,11 @@
 .detail-services, .detail-industries { background: var(--paper); }
 .service-page-grid { grid-template-columns: repeat(3, 1fr); }
 .service-page-grid article { min-height: 240px; padding-top: 24px; }
+.service-page-grid .vehicle-detail-card { min-height: 0; padding: 0 0 25px; overflow: hidden; scroll-margin-top: 100px; }
+.vehicle-detail-card > img { display: block; width: 100%; aspect-ratio: 1.5 / 1; object-fit: cover; }
+.vehicle-detail-card .card-index { top: 15px; right: 15px; margin: 0; padding: 7px 8px; color: var(--navy); background: rgba(255,255,255,.92); }
+.vehicle-detail-card h3, .vehicle-detail-card p { margin-left: 23px; margin-right: 23px; }
+.vehicle-detail-card h3 { margin-top: 17px; }
 .service-page-grid .card-icon { width: 40px; height: 40px; display: grid; place-items: center; color: var(--accent); background: #eaf4f7; }
 .service-page-grid .card-icon svg { width: 20px; height: 20px; }
 .service-page-grid .card-index { position: absolute; top: 38px; right: 24px; color: #9daab0; font-size: 9px; font-weight: 700; }
@@ -146,6 +151,7 @@
   .three-cards, .service-page-grid, .industry-grid { grid-template-columns: 1fr; }
   .detail-cards article { padding: 21px; }
   .service-page-grid article { min-height: 218px; }
+  .service-page-grid .vehicle-detail-card { min-height: 0; }
   .industry-grid article { min-height: 165px; }
   .callout-inner, .detail-cta-inner { align-items: flex-start; flex-direction: column; }
   .detail-cta .cta-actions { width: 100%; flex-direction: column; }

@@ -3,6 +3,9 @@ import './pages.css'
 import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
 import fleetImage from './assets/images/fleet-warehouse-production.jpg'
+import truckServiceImage from './assets/images/trevola-truck-loading.png'
+import vanServiceImage from './assets/images/trevola-express-van.png'
+import minitruckServiceImage from './assets/images/trevola-minitruck.png'
 import serviceImage from './assets/images/services-cargo-production.jpg'
 import aboutDetailImage from './assets/images/about-team-production.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
@@ -103,7 +106,7 @@ function mainContent() {
   const image=page==='about-us'?aboutDetailImage:page==='services'?serviceImage:page==='fleet'?fleetImage:page==='industries'?industryImage:page==='contact'?contactImage:aboutImage
   const imageDescription=page==='contact'?contactImageText:imageText
   const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo"><img src="' + image + '" alt="' + imageDescription[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageDescription[1] + '</figcaption></figure></div></section>'
-  const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article><span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p></article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
+  const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article' + (page==='services'?' class="vehicle-detail-card" id="vehicle-' + (i+1) + '"':'') + (page==='services'?'<img src="' + [truckServiceImage,vanServiceImage,minitruckServiceImage][i] + '" alt="' + item.title + '" width="1536" height="1024" loading="lazy" decoding="async">':'') + '<span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p></article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
   return intro+cards
 }
 
