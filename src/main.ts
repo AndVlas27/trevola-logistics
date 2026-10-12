@@ -2,7 +2,9 @@ import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-operations-control-premium.webp'
 import warehouseImage from './assets/images/network-road-branded.jpg'
-import fleetLineupImage from './assets/images/trevola-fleet-lineup-premium.jpg'
+import truckServiceImage from './assets/images/trevola-truck-loading.jpg'
+import vanServiceImage from './assets/images/trevola-express-van.jpg'
+import minitruckServiceImage from './assets/images/trevola-minitruck.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 
 import { languageOptions, translations, type Language } from './i18n'
@@ -10,10 +12,19 @@ import { pageUrl } from './routes'
 import { siteCopy } from './page-copy'
 
 const services = [
-  { icon: 'truck', title: 'service1Title', text: 'service1Text' },
-  { icon: 'route', title: 'service2Title', text: 'service2Text' },
-  { icon: 'boxes', title: 'service3Title', text: 'service3Text' },
+  { title: 'service1Title', text: 'service1Text', image: truckServiceImage, route: 'trucks' },
+  { title: 'service2Title', text: 'service2Text', image: vanServiceImage, route: 'vans' },
+  { title: 'service3Title', text: 'service3Text', image: minitruckServiceImage, route: 'minitrucks' },
 ]
+
+const serviceImageAlts: Record<Language, [string, string, string]> = {
+  pt: ['Camião Trevola Logistics numa zona de carga', 'Carrinha Trevola Logistics para transporte expresso', 'Minitir Trevola Logistics preparado para transportar mercadorias'],
+  fr: ['Camion Trevola Logistics dans une zone de chargement', 'Utilitaire Trevola Logistics pour le transport express', 'Minitruck Trevola Logistics prêt à transporter des marchandises'],
+  en: ['Trevola Logistics truck at a loading area', 'Trevola Logistics van for express transport', 'Trevola Logistics minitruck ready to carry freight'],
+  de: ['Lkw von Trevola Logistics im Ladebereich', 'Transporter von Trevola Logistics für Expressfahrten', 'Minitruck von Trevola Logistics für den Gütertransport'],
+  ru: ['Грузовик Trevola Logistics в зоне погрузки', 'Фургон Trevola Logistics для срочной перевозки', 'Малотоннажный грузовик Trevola Logistics для перевозки грузов'],
+  uk: ['Вантажівка Trevola Logistics у зоні завантаження', 'Фургон Trevola Logistics для термінових перевезень', 'Малотоннажна вантажівка Trevola Logistics для перевезення вантажів'],
+}
 
 const advantages = [
   { icon: 'globe', title: 'why1Title', text: 'why1Text' },
@@ -42,6 +53,7 @@ const processSteps = [
 
 const iconPaths: Record<string, string> = {
   arrow: '<path d="M5 12h14M12 5l7 7-7 7"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
   truck: '<path d="M3 6h11v12H3zM14 10h4l3 3v5h-7z"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="17.5" cy="18" r="1.5"/>',
   boxes: '<path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="M3 8v9l9 5 9-5V8M12 13v9M7.5 5.5l9 5"/>',
@@ -192,7 +204,7 @@ function render() {
 
       <section class="stats-band" aria-label="${t('statsEyebrow')}"><div class="container stats-grid"><div class="stats-intro" data-reveal><span class="eyebrow eyebrow-light"><span class="eyebrow-line" aria-hidden="true"></span>${t('statsEyebrow')}</span><h2>${t('statsTitle')}<em>${t('statsAccent')}</em></h2></div><div class="stat-item" data-reveal><strong>FTL</strong><span>${t('statCountries')}</span></div><div class="stat-item" data-reveal><strong>LTL</strong><span>${t('statSupport')}</span></div><div class="stat-item" data-reveal><strong>EXPRESS</strong><span>${t('statShipments')}</span></div><div class="stat-item" data-reveal><strong>DEDICATED</strong><span>${t('statOnTime')}</span></div></div></section>
 
-      <section id="services" class="services section-pad" aria-labelledby="services-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('servicesEyebrow')}</span><h2 id="services-title">${t('servicesTitle')}<br><em>${t('servicesAccent')}</em></h2></div><p>${t('servicesDescription')}</p></div><figure class="fleet-lineup" data-reveal><img src="${fleetLineupImage}" alt="${t('servicesTitle')} ${t('servicesAccent')}" width="2048" height="750" loading="lazy" decoding="async"><figcaption>${t('servicesDescription')}</figcaption></figure><div class="service-grid">${services.map((service, index) => '<article class="service-card vehicle-service-card" data-reveal style="--reveal-delay:' + (index * 65) + 'ms"><div class="service-top"><span class="service-icon">' + icon(service.icon) + '</span><span class="service-number">0' + (index + 1) + '</span></div><h3>' + t(service.title) + '</h3><p>' + t(service.text) + '</p><a href="' + pageUrl(currentLanguage, (['trucks','vans','minitrucks'] as const)[index]) + '" aria-label="' + t('serviceAsk') + ' ' + t(service.title) + '">' + icon('arrow') + '</a></article>').join('')}</div></div></div></section>
+      <section id="services" class="services section-pad" aria-labelledby="services-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('servicesEyebrow')}</span><h2 id="services-title">${t('servicesTitle')}<br><em>${t('servicesAccent')}</em></h2></div><p>${t('servicesDescription')}</p></div><div class="service-grid vehicle-photo-grid">${services.map((service, index) => '<article class="service-card vehicle-service-card" data-reveal style="--reveal-delay:' + (index * 65) + 'ms"><div class="vehicle-service-image"><img src="' + service.image + '" alt="' + serviceImageAlts[currentLanguage][index] + '" width="1536" height="1024" loading="lazy" decoding="async"><span>0' + (index + 1) + '</span></div><div class="vehicle-service-copy"><h3>' + t(service.title) + '</h3><p>' + t(service.text) + '</p><a class="vehicle-service-link" href="' + pageUrl(currentLanguage, service.route as 'trucks' | 'vans' | 'minitrucks') + '" aria-label="' + t('serviceAsk') + ' ' + t(service.title) + '">' + t('serviceAsk') + ' ' + icon('arrow') + '</a></div></article>').join('')}</div></div></section>
 
       <section id="why-trevola" class="why-section section-pad" aria-labelledby="why-title"><div class="container"><div class="section-heading" data-reveal><div><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('whyEyebrow')}</span><h2 id="why-title">${t('whyTitle')}<br><em>${t('whyAccent')}</em></h2></div><p>${t('whyDescription')}</p></div><div class="why-grid">${advantages.map((item, index) => `<article class="why-card" data-reveal style="--reveal-delay:${index * 80}ms"><span class="why-icon">${icon(item.icon)}</span><span class="why-number">0${index + 1}</span><h3>${t(item.title)}</h3><p>${t(item.text)}</p></article>`).join('')}</div></div></section>
 
@@ -228,7 +240,7 @@ function render() {
   const navTools = app.querySelector<HTMLElement>('.nav-tools')
   const searchButton = document.createElement('button')
   searchButton.type = 'button'; searchButton.className = 'search-trigger'; searchButton.setAttribute('aria-label', t('searchLabel'))
-  searchButton.innerHTML = `${icon('globe')}<span>${t('searchLabel')}</span>`
+  searchButton.innerHTML = `${icon('search')}<span>${t('searchLabel')}</span>`
   navTools?.prepend(searchButton)
   const searchDialog = document.createElement('dialog')
   searchDialog.className = 'site-search-dialog'

@@ -154,6 +154,19 @@ button { color: inherit; }
 .service-card > a { position: absolute; right: 22px; bottom: 17px; width: 29px; height: 29px; display: grid; place-items: center; color: var(--accent); border: 1px solid #cbdde5; border-radius: 50%; transition: color .2s, background .2s; }
 .service-card > a:hover { color: #fff; background: #155b8e; }
 .service-card > a svg { width: 14px; height: 14px; }
+.vehicle-photo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; border: 0; background: transparent; }
+.vehicle-photo-grid .vehicle-service-card { min-width: 0; min-height: 0; padding: 0; overflow: hidden; border: 1px solid #dfe7e9; background: #fff; box-shadow: 0 10px 30px rgba(17,39,54,.045); }
+.vehicle-service-image { position: relative; display: block; overflow: hidden; aspect-ratio: 1.5 / 1; background: #e8eef0; }
+.vehicle-service-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.vehicle-service-card:hover .vehicle-service-image img { transform: scale(1.035); }
+.vehicle-service-image > span { position: absolute; top: 14px; left: 14px; display: grid; width: 33px; height: 33px; place-items: center; color: var(--navy); background: rgba(255,255,255,.94); font-size: 10px; font-weight: 800; }
+.vehicle-service-copy { padding: 22px 22px 20px; }
+.vehicle-service-copy h3 { margin: 0; color: var(--navy); font-size: 17px; font-weight: 720; letter-spacing: -.025em; }
+.vehicle-service-copy p { min-height: 72px; max-width: none; margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.vehicle-service-copy .vehicle-service-link { position: static; width: auto; height: auto; display: inline-flex; align-items: center; gap: 9px; margin-top: 15px; padding: 0; color: var(--navy); border: 0; border-radius: 0; font-size: 10px; font-weight: 750; }
+.vehicle-service-copy .vehicle-service-link:hover { color: var(--accent); background: transparent; }
+.vehicle-service-copy .vehicle-service-link svg { width: 15px; height: 15px; transition: transform .2s ease; }
+.vehicle-service-copy .vehicle-service-link:hover svg { transform: translateX(3px); }
 
 .why-section { background: #fff; }
 .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -377,6 +390,9 @@ button { color: inherit; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 196px; padding-inline: 20px; }
   .vehicle-service-card { padding: 22px 20px 50px; }
+  .vehicle-photo-grid .vehicle-service-card { padding: 0; }
+  .vehicle-service-copy { padding: 19px 18px 18px; }
+  .vehicle-service-copy p { min-height: 0; }
   .why-grid { grid-template-columns: 1fr; }
   .why-card, .why-card:first-child, .why-card:nth-child(3) { min-height: 184px; padding: 21px 19px; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .why-card:first-child { border-top: 1px solid var(--line); }

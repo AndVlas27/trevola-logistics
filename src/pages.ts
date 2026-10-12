@@ -19,7 +19,7 @@ import { currentLanguage, pageUrl } from './routes'
 
 const icon = (name = 'arrow') => {
   const paths: Record<string,string> = {
-    arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>', mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>', search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>', mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
     phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3.1a2 2 0 0 1-.6 1.7L7.2 10.3a16 16 0 0 0 6 6l1.8-1.8a2 2 0 0 1 1.7-.6l3.1.5a2 2 0 0 1 2.2 2.5Z"/>',
     globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/>',
     shield:'<path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/><path d="m9 12 2 2 4-4"/>',
@@ -80,7 +80,7 @@ function header() {
   return '<a class="skip-link" href="#page-main">' + common.skip + '</a><div class="utility-bar"><div class="container utility-inner"><a href="mailto:info@trevolalogistics.com">' + icon('mail') + '<span>info@trevolalogistics.com</span></a><span class="utility-divider"></span><a href="tel:+351928338946">' + icon('phone') + '<span>+351 928 338 946</span></a></div></div>' +
   '<header class="site-header"><nav class="navbar container" aria-label="' + copy.nav.home + '"><a class="brand" href="' + href('home') + '" aria-label="' + common.home + '"><img src="' + logo + '" alt="Trevola Logistics" width="800" height="267"></a><button class="menu-toggle" type="button" aria-label="' + common.menuOpen + '" aria-expanded="false" aria-controls="page-navigation"><span></span><span></span><span></span></button><div class="nav-panel" id="page-navigation"><ul class="nav-links"><li><a href="' + href('home') + '">' + copy.nav.home + '</a></li>' +
   navIds.map((id) => '<li><a href="' + href(id) + '"' + (page===id?' aria-current="page"':'') + '>' + copy.nav[labels[id]] + '</a></li>').join('') +
-  '</ul><div class="nav-tools"><button type="button" class="search-trigger" aria-label="' + copy.nav.search + '">' + icon('globe') + '<span>' + copy.nav.search + '</span></button><label class="language-control">' + icon('globe') + '<span class="sr-only">' + copy.nav.language + '</span><select class="language-select" aria-label="' + copy.nav.language + '">' +
+  '</ul><div class="nav-tools"><button type="button" class="search-trigger" aria-label="' + copy.nav.search + '">' + icon('search') + '<span>' + copy.nav.search + '</span></button><label class="language-control">' + icon('globe') + '<span class="sr-only">' + copy.nav.language + '</span><select class="language-select" aria-label="' + copy.nav.language + '">' +
   languages.map(code => '<option value="' + code + '"' + (code===locale?' selected':'') + '>' + siteCopy[code].label + '</option>').join('') +
   '</select></label><a class="nav-cta" href="' + href('request-a-quote') + '">' + copy.nav.quote + ' ' + icon() + '</a></div></div></nav></header>'
 }
