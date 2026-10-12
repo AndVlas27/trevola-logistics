@@ -134,7 +134,7 @@ button { color: inherit; }
 .section-heading h2 { margin-bottom: 0; }
 .section-heading > p { max-width: 375px; margin: 0 0 4px; color: var(--muted); font-size: 12px; line-height: 1.85; }
 .fleet-lineup { position: relative; margin: 0 0 34px; overflow: hidden; background: var(--navy-deep); }
-.fleet-lineup img { width: 100%; aspect-ratio: 2.73 / 1; object-fit: cover; }
+.fleet-lineup img { display: block; width: 100%; height: auto; aspect-ratio: auto; object-fit: contain; }
 .fleet-lineup figcaption { position: absolute; right: 14px; bottom: 12px; max-width: min(460px, 72%); padding: 8px 11px; color: #fff; background: rgba(6,23,42,.78); font-size: 10px; line-height: 1.6; }
 .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #dce3e5; border-left: 1px solid #dce3e5; }
 .service-card { min-height: 228px; position: relative; padding: 24px 26px 48px; background: rgba(255,255,255,.52); border-right: 1px solid #dce3e5; border-bottom: 1px solid #dce3e5; transition: background .25s ease, box-shadow .25s ease, transform .25s ease; }
@@ -373,7 +373,6 @@ button { color: inherit; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 31px; }
   .section-heading > p { max-width: 460px; font-size: 11px; }
   .fleet-lineup { margin-bottom: 23px; }
-  .fleet-lineup img { aspect-ratio: 1.35 / 1; }
   .fleet-lineup figcaption { right: 8px; bottom: 8px; max-width: 86%; padding: 7px 9px; font-size: 9px; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card { min-height: 196px; padding-inline: 20px; }

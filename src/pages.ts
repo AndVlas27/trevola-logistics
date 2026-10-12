@@ -1,6 +1,5 @@
 import './style.css'
 import './pages.css'
-import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-loading-production.jpg'
 import fleetImage from './assets/images/fleet-warehouse-production.jpg'
 import truckServiceImage from './assets/images/trevola-truck-loading.jpg'
@@ -10,6 +9,7 @@ import serviceImage from './assets/images/services-cargo-production.jpg'
 import aboutDetailImage from './assets/images/about-team-production.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
 import contactImage from './assets/images/contact-coordinator-mural.jpg'
+import networkImage from './assets/images/network-road-branded.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 import { siteCopy, type PageId } from './page-copy'
 import { currentLanguage, pageUrl } from './routes'
@@ -175,7 +175,16 @@ function render() {
   document.querySelector('meta[property="og:description"]')?.setAttribute('content',description)
   const data=copy.pages[page]
   const hero=page==='privacy-policy'||page==='cookies'||page==='terms'?[copy.nav[labels[page]],copy.legal[page].title,'',copy.legal[page].note]:page==='careers'?[copy.nav.careers,copy.careers.emptyTitle,'',copy.careers.emptyText]:page==='news'?[copy.nav.news,copy.news.emptyTitle,'',copy.news.emptyText]:page==='request-a-quote'?[copy.nav.quote,copy.nav.quote,'',copy.quote.intro]:data?.hero ?? copy.seo[page]
-  const image=(page==='about-us'||page==='industries'||page==='contact')?aboutImage:heroImage
+  const image = page === 'about-us' || page === 'careers' ? aboutDetailImage
+    : page === 'services' ? serviceImage
+    : page === 'trucks' ? truckServiceImage
+    : page === 'vans' ? vanServiceImage
+    : page === 'minitrucks' ? minitruckServiceImage
+    : page === 'fleet' ? fleetImage
+    : page === 'industries' ? industryImage
+    : page === 'contact' || page === 'request-a-quote' ? contactImage
+    : page === 'news' ? networkImage
+    : aboutImage
   app.innerHTML=header()+'<main id="page-main" class="detail-page"><section class="page-hero" style="--page-image:url(\''+image+'\')" aria-labelledby="page-title"><div class="page-hero-shade"></div><div class="container page-hero-inner"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="'+href('home')+'">'+copy.nav.home+'</a><span aria-hidden="true">/</span><span aria-current="page">'+hero[0]+'</span></nav><span class="page-hero-eyebrow"><i></i>'+hero[0]+'</span><h1 id="page-title">'+hero[1]+(hero[2]?'<br><em>'+hero[2]+'</em>':'')+'</h1><p>'+hero[3]+'</p>'+(page==='privacy-policy'||page==='cookies'||page==='terms'||page==='careers'||page==='news'?'':'<a class="button button-primary" href="'+href('request-a-quote')+'">'+copy.nav.quote+' '+icon()+'</a>')+'</div></section>'+mainContent()+footer()+'</main>'
   const menu=app.querySelector<HTMLButtonElement>('.menu-toggle')!,panel=app.querySelector<HTMLElement>('.nav-panel')!
   menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',String(!open));menu.setAttribute('aria-label',open?common.menuOpen:common.menuClose);panel.classList.toggle('is-open',!open)})
