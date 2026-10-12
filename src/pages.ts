@@ -9,6 +9,7 @@ import serviceImage from './assets/images/services-coordinator-fictional.jpg'
 import serviceHeroImage from './assets/images/services-wall-logo-premium.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
 import contactImage from './assets/images/contact-coordinator-mural.jpg'
+import contactHeroImage from './assets/images/contact-communications-hero.jpg'
 import networkImage from './assets/images/network-road-branded.jpg'
 import fleetLineupImage from './assets/images/trevola-fleet-lineup-premium.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
@@ -191,7 +192,8 @@ function render() {
     : page === 'minitrucks' ? minitruckServiceImage
     : page === 'fleet' ? fleetLineupImage
     : page === 'industries' ? industryImage
-    : page === 'contact' || page === 'request-a-quote' ? contactImage
+    : page === 'contact' ? contactHeroImage
+    : page === 'request-a-quote' ? contactImage
     : page === 'news' ? networkImage
     : aboutImage
   app.innerHTML=header()+'<main id="page-main" class="detail-page"><section class="page-hero page-hero--'+page+'" style="--page-image:url(\''+image+'\')" aria-labelledby="page-title"><div class="page-hero-shade"></div><div class="container page-hero-inner"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="'+href('home')+'">'+copy.nav.home+'</a><span aria-hidden="true">/</span><span aria-current="page">'+hero[0]+'</span></nav><span class="page-hero-eyebrow"><i></i>'+hero[0]+'</span><h1 id="page-title">'+hero[1]+(hero[2]?'<br><em>'+hero[2]+'</em>':'')+'</h1><p>'+hero[3]+'</p>'+(page==='privacy-policy'||page==='cookies'||page==='terms'||page==='careers'||page==='news'?'':'<a class="button button-primary" href="'+href('request-a-quote')+'">'+copy.nav.quote+' '+icon()+'</a>')+'</div></section>'+mainContent()+footer()+'</main>'

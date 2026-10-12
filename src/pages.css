@@ -165,13 +165,13 @@
 }
 
 /* Page-specific image framing keeps key subjects and brand details in view. */
-.page-hero--contact,
+.page-hero--contact { background-position: center 50%; }
 .page-hero--request-a-quote { background-position: center 24%; }
 .page-hero--services { background-position: center 28%; }
 .page-hero--fleet { min-height: 540px; background-position: center 52%; }
 .detail-photo--fleet img { object-position: center 32%; }
 @media (max-width: 600px) {
-  .page-hero--contact,
+  .page-hero--contact { background-position: 59% 50%; }
   .page-hero--request-a-quote { background-position: 59% 24%; }
   .page-hero--services { background-position: center 28%; }
   .page-hero--fleet { min-height: 420px; background-position: center 52%; }
