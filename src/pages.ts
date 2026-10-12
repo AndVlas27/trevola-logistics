@@ -74,6 +74,14 @@ const labels: Record<string,string> = {
   'about-us':'about-us', services:'services', fleet:'fleet', industries:'industries', contact:'contact',
   careers:'careers', news:'news', 'request-a-quote':'quote', 'privacy-policy':'privacy', cookies:'cookies', terms:'terms',
 }
+const legalHeroDescriptions: Record<string, Record<'privacy-policy'|'cookies'|'terms',string>> = {
+  pt: { 'privacy-policy':'Saiba como tratamos os dados enviados e como pode exercer os seus direitos.', cookies:'Informação sobre a preferência de idioma e as tecnologias técnicas usadas no website.', terms:'Condições gerais de utilização do website e dos pedidos de transporte.' },
+  en: { 'privacy-policy':'Learn how submitted information is handled and how to exercise your rights.', cookies:'Information about language preferences and the technical technologies used on this website.', terms:'General conditions for using this website and making transport enquiries.' },
+  fr: { 'privacy-policy':'Découvrez comment les informations transmises sont traitées et comment exercer vos droits.', cookies:'Informations sur la préférence linguistique et les technologies techniques utilisées sur ce site.', terms:'Conditions générales d’utilisation du site et des demandes de transport.' },
+  de: { 'privacy-policy':'Erfahren Sie, wie übermittelte Angaben verarbeitet werden und wie Sie Ihre Rechte ausüben können.', cookies:'Informationen zur Spracheinstellung und zu den technischen Technologien dieser Website.', terms:'Allgemeine Bedingungen für die Nutzung der Website und Transportanfragen.' },
+  ru: { 'privacy-policy':'Информация об обработке отправленных данных и способах осуществления ваших прав.', cookies:'Информация о языковых настройках и технических технологиях сайта.', terms:'Общие условия использования сайта и подачи запросов на перевозку.' },
+  uk: { 'privacy-policy':'Інформація про обробку надісланих даних і способи здійснення ваших прав.', cookies:'Інформація про мовні налаштування й технічні технології сайту.', terms:'Загальні умови користування сайтом і подання запитів на перевезення.' },
+}
 
 function header() {
   const navIds: PageId[] = ['about-us','services','fleet','industries','contact','careers','news']
@@ -198,7 +206,7 @@ function render() {
   document.querySelector('meta[property="og:title"]')?.setAttribute('content',title)
   document.querySelector('meta[property="og:description"]')?.setAttribute('content',description)
   const data=copy.pages[page]
-  const hero=page==='privacy-policy'||page==='cookies'||page==='terms'?[copy.nav[labels[page]],copy.legal[page].title,'',copy.legal[page].note]:page==='careers'?[copy.nav.careers,copy.careers.emptyTitle,'',copy.careers.emptyText]:page==='news'?[copy.nav.news,copy.news.emptyTitle,'',copy.news.emptyText]:page==='request-a-quote'?[copy.nav.quote,copy.nav.quote,'',copy.quote.intro]:data?.hero ?? copy.seo[page]
+  const hero=page==='privacy-policy'||page==='cookies'||page==='terms'?[copy.nav[labels[page]],copy.legal[page].title,'',legalHeroDescriptions[locale][page]]:page==='careers'?[copy.nav.careers,copy.careers.emptyTitle,'',copy.careers.emptyText]:page==='news'?[copy.nav.news,copy.news.emptyTitle,'',copy.news.emptyText]:page==='request-a-quote'?[copy.nav.quote,copy.nav.quote,'',copy.quote.intro]:data?.hero ?? copy.seo[page]
   const image = page === 'careers' ? careersHeroImage
     : page === 'about-us' ? aboutImage
     : page === 'services' ? serviceHeroImage
