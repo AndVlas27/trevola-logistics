@@ -1,6 +1,6 @@
 import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
-import aboutImage from './assets/images/trevola-loading-production.jpg'
+import aboutImage from './assets/images/trevola-operations-control-premium.webp'
 import warehouseImage from './assets/images/network-road-branded.jpg'
 import fleetLineupImage from './assets/images/trevola-fleet-lineup-premium.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
@@ -186,7 +186,7 @@ function render() {
       </section>
 
       <section id="about" class="about section-pad" aria-labelledby="about-title"><div class="container about-grid">
-        <div class="about-visual" data-reveal><img src="${aboutImage}" alt="${t('aboutImageAlt')}" width="1536" height="1024" loading="lazy" decoding="async"><div class="visual-caption"><span class="caption-icon">${icon('pin')}</span><span><strong>${t('basedPortugal')}</strong><small>${t('connectedEurope')}</small></span></div><div class="visual-accent" aria-hidden="true"></div></div>
+        <div class="about-visual" data-reveal><img src="${aboutImage}" alt="${t('aboutImageAlt')}" width="1774" height="887" loading="lazy" decoding="async"><img class="about-trailer-logo" src="${logo}" alt="" aria-hidden="true" width="800" height="267" decoding="async"><div class="visual-caption"><span class="caption-icon">${icon('pin')}</span><span><strong>${t('basedPortugal')}</strong><small>${t('connectedEurope')}</small></span></div><div class="visual-accent" aria-hidden="true"></div></div>
         <div class="about-copy" data-reveal><span class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>${t('aboutEyebrow')}</span><h2 id="about-title">${t('aboutTitle')}<br><em>${t('aboutAccent')}</em></h2><p class="lead">${t('aboutLead')}</p><p>${t('aboutBody')}</p><a class="text-link" href="#contact">${t('aboutLink')} ${icon('arrow')}</a></div>
       </div></section>
 
