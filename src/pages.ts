@@ -6,7 +6,6 @@ import truckServiceImage from './assets/images/trevola-truck-loading.jpg'
 import vanServiceImage from './assets/images/trevola-express-van.jpg'
 import minitruckServiceImage from './assets/images/trevola-minitruck.jpg'
 import serviceImage from './assets/images/services-cargo-production.jpg'
-import aboutDetailImage from './assets/images/about-team-production.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
 import contactImage from './assets/images/contact-coordinator-mural.jpg'
 import networkImage from './assets/images/network-road-branded.jpg'
@@ -104,7 +103,7 @@ function mainContent() {
   if (!data) return '<section class="detail-values section-pad"><div class="container empty-state"><h2>' + copy.seo[page][0] + '</h2><p>' + copy.seo[page][1] + '</p></div></section>'
   const h=data.heading || [data.hero[0],data.hero[1],data.hero[2]]
   const paragraphs=data.paragraphs || []
-  const image=page==='about-us'?aboutDetailImage:page==='services'?serviceImage:page==='trucks'?truckServiceImage:page==='vans'?vanServiceImage:page==='minitrucks'?minitruckServiceImage:page==='fleet'?fleetImage:page==='industries'?industryImage:page==='contact'?contactImage:aboutImage
+  const image=page==='about-us'?industryImage:page==='services'?serviceImage:page==='trucks'?truckServiceImage:page==='vans'?vanServiceImage:page==='minitrucks'?minitruckServiceImage:page==='fleet'?fleetImage:page==='industries'?industryImage:page==='contact'?contactImage:aboutImage
   const imageDescription=page==='contact'?contactImageText:imageText
   const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo detail-photo--' + page + '"><img src="' + image + '" alt="' + imageDescription[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageDescription[1] + '</figcaption></figure></div></section>'
   const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article><span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p>' + (page==='services'?'<a href="' + href((['trucks','vans','minitrucks'] as const)[i]) + '">' + common.discuss + ' ' + icon() + '</a>':'') + '</article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
@@ -176,7 +175,7 @@ function render() {
   document.querySelector('meta[property="og:description"]')?.setAttribute('content',description)
   const data=copy.pages[page]
   const hero=page==='privacy-policy'||page==='cookies'||page==='terms'?[copy.nav[labels[page]],copy.legal[page].title,'',copy.legal[page].note]:page==='careers'?[copy.nav.careers,copy.careers.emptyTitle,'',copy.careers.emptyText]:page==='news'?[copy.nav.news,copy.news.emptyTitle,'',copy.news.emptyText]:page==='request-a-quote'?[copy.nav.quote,copy.nav.quote,'',copy.quote.intro]:data?.hero ?? copy.seo[page]
-  const image = page === 'about-us' || page === 'careers' ? aboutDetailImage
+  const image = page === 'about-us' || page === 'careers' ? aboutImage
     : page === 'services' ? serviceImage
     : page === 'trucks' ? truckServiceImage
     : page === 'vans' ? vanServiceImage
