@@ -163,3 +163,14 @@
   .form-full { grid-column: auto; }
   .contact-page-card { padding: 24px 18px 15px; }
 }
+
+/* Page-specific image framing keeps key subjects and brand details in view. */
+.page-hero--contact,
+.page-hero--request-a-quote { background-position: center 24%; }
+.page-hero--fleet { min-height: 540px; background-position: center 52%; }
+.detail-photo--fleet img { object-position: center 32%; }
+@media (max-width: 600px) {
+  .page-hero--contact,
+  .page-hero--request-a-quote { background-position: 59% 24%; }
+  .page-hero--fleet { min-height: 420px; background-position: center 52%; }
+}
