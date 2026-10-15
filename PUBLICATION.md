@@ -15,9 +15,10 @@ npm run build
 npm run preview
 ```
 
-O comando de build valida o TypeScript, compila as 12 páginas de entrada e gera
-em `dist/` as versões de inglês, português, francês e alemão. Também atualiza o
-sitemap localizado. O preview local serve o conteúdo final de `dist/`.
+O comando de build valida o TypeScript, compila as 15 páginas de entrada e gera
+em `dist/` as versões de inglês, português, francês, alemão, russo e ucraniano.
+Também atualiza o sitemap localizado. O preview local serve o conteúdo final
+de `dist/`.
 
 ## 2. Publicar na Vercel
 
@@ -118,7 +119,7 @@ variantes localizadas no build.
 - `npm run build`: concluído sem erros.
 - Verificação sintática da função `api/request-quote.js`: concluída.
 - Configuração JSON da Vercel e manifesto: válidos.
-- Foram geradas 48 páginas canónicas (12 páginas × 4 idiomas) e 48 entradas de
+- Foram geradas 90 páginas canónicas (15 páginas × 6 idiomas) e 90 entradas de
   sitemap.
 - Auditoria de referências a assets locais no build: nenhum caminho em falta.
 
