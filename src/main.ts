@@ -1,7 +1,7 @@
 import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
 import aboutImage from './assets/images/trevola-about-terminal-v2.jpg'
-import warehouseImage from './assets/images/network-road-branded.jpg'
+import warehouseImage from './assets/images/network-road-branded-v2.jpg'
 import truckServiceImage from './assets/images/trevola-fleet-actros-v2.jpg'
 import vanServiceImage from './assets/images/trevola-fleet-sprinter.jpg'
 import minitruckServiceImage from './assets/images/trevola-fleet-atego-v2.jpg'
