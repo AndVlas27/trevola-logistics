@@ -24,6 +24,7 @@
 .detail-photo::after { position: absolute; z-index: 0; right: 0; bottom: 0; width: 38%; height: 42%; content: ""; background: #dcebd8; }
 .detail-photo img { position: relative; z-index: 1; width: 100%; height: 365px; object-fit: cover; }
 .detail-photo figcaption { position: absolute; z-index: 2; right: 0; bottom: 0; padding: 9px 12px; color: #65747d; background: #fff; font-size: 8px; }
+.detail-photo--contact img { height: auto; aspect-ratio: 3 / 2; object-fit: contain; }
 .detail-values { background: var(--paper); }
 .page-section-heading { max-width: 730px; margin-bottom: 38px; }
 .page-section-heading h2 { font-size: clamp(35px, 4vw, 49px); }
@@ -147,7 +148,7 @@
   .page-hero-index { right: 20px; bottom: 19px; font-size: 7px; }
   .detail-two-col, .fleet-page-grid, .contact-page-grid { grid-template-columns: 1fr; gap: 34px; }
   .detail-two-col h2, .page-section-heading h2 { font-size: clamp(35px, 9vw, 46px); }
-  .detail-photo img { height: clamp(235px, 66vw, 330px); }
+  .detail-photo:not(.detail-photo--contact) img { height: clamp(235px, 66vw, 330px); }
   .three-cards, .service-page-grid, .industry-grid { grid-template-columns: 1fr; }
   .detail-cards article { padding: 21px; }
   .service-page-grid article { min-height: 218px; }
