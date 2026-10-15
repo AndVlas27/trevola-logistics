@@ -369,6 +369,7 @@ button { color: inherit; }
   .about-grid { grid-template-columns: 1fr; gap: 35px; }
   .about-visual { min-height: 0; padding: 0 17px 17px 0; }
   .about-visual > img { height: clamp(235px, 67vw, 335px); }
+  .about-visual > .about-trailer-logo { top: 35%; left: 78%; width: 15%; }
   .visual-accent { width: 82px; height: 82px; }
   .visual-caption { right: -1px; bottom: 15px; min-width: 192px; padding: 11px; }
   .caption-icon { width: 34px; height: 34px; flex-basis: 34px; }
