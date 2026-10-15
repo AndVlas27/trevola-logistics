@@ -10,7 +10,7 @@ import serviceImage from './assets/images/services-coordinator-fictional.jpg'
 import serviceHeroImage from './assets/images/services-wall-logo-premium.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
 import industriesDetailImage from './assets/images/industries-produce-logistics.jpg'
-import contactImage from './assets/images/contact-coordinator-mural.jpg'
+import contactImage from './assets/images/contact-coordinator-approved.jpg'
 import contactHeroImage from './assets/images/contact-communications-hero.jpg'
 import careersHeroImage from './assets/images/careers-team-hero.jpg'
 import newsHeroImage from './assets/images/news-logistics-editorial.jpg'
@@ -57,12 +57,12 @@ const imageText = {
   uk: ['Ілюстративне зображення автоперевезення Trevola Logistics', 'Ілюстративне зображення перевезення'],
 }[locale]
 const contactImageText = {
-  en: ['Illustrative image of a fictional logistics professional', 'Illustrative customer support image'],
-  pt: ['Imagem ilustrativa de uma profissional fictícia da área logística', 'Imagem ilustrativa de apoio ao cliente'],
-  fr: ['Image illustrative d’une professionnelle fictive de la logistique', 'Image illustrative du service client'],
-  de: ['Illustration einer fiktiven Logistikmitarbeiterin', 'Illustration des Kundenservice'],
-  ru: ['Иллюстративное изображение вымышленной сотрудницы логистической компании', 'Иллюстративное изображение службы поддержки'],
-  uk: ['Ілюстративне зображення вигаданої працівниці логістичної компанії', 'Ілюстративне зображення служби підтримки'],
+  en: ['Illustrative image for the Trevola Logistics contact page', 'Illustrative customer support image'],
+  pt: ['Imagem ilustrativa da página de contactos da Trevola Logistics', 'Imagem ilustrativa de apoio ao cliente'],
+  fr: ['Image illustrative de la page de contact de Trevola Logistics', 'Image illustrative du service client'],
+  de: ['Illustration für die Kontaktseite von Trevola Logistics', 'Illustration des Kundenservice'],
+  ru: ['Иллюстрация для страницы контактов Trevola Logistics', 'Иллюстративное изображение службы поддержки'],
+  uk: ['Ілюстрація для сторінки контактів Trevola Logistics', 'Ілюстративне зображення служби підтримки'],
 }[locale]
 const serviceImageText = {
   en: ['Illustrative image of a fictional logistics coordinator in a warehouse', 'Illustrative logistics coordination image'],
