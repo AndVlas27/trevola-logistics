@@ -191,8 +191,6 @@ button { color: inherit; }
 .network-feature { height: 390px; position: relative; overflow: hidden; background: #203a4b; }
 .network-feature > img { width: 100%; height: 100%; object-fit: cover; object-position: center 51%; }
 .network-gradient { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,24,35,.62), transparent 75%), linear-gradient(0deg, rgba(8,24,35,.65), transparent 48%); }
-.network-trailer-brand { position: absolute; z-index: 2; top: 29%; left: 55%; width: 26%; height: 25%; overflow: visible; background: transparent; pointer-events: none; }
-.network-trailer-brand img { position: absolute; top: 8%; left: 3%; display: block; width: 93%; height: auto; transform: rotate(5deg); transform-origin: center; }
 .network-caption { position: absolute; left: 35px; bottom: 31px; display: grid; gap: 8px; }
 .network-caption > span { color: rgba(255,255,255,.72); font-size: 9px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .network-caption > strong { color: #fff; font-size: 16px; font-weight: 700; }
@@ -410,9 +408,7 @@ button { color: inherit; }
   .process-step:not(:last-child)::after { top: auto; right: 7px; bottom: -4px; display: block; transform: rotate(135deg); }
   .why-card h3 { margin-top: 18px; }
   .network-feature { height: 300px; }
-  .network-feature > img { object-position: 70% center; }
-  .network-trailer-brand { top: 31%; left: 37%; width: 63%; height: 31%; }
-  .network-trailer-brand img { top: 8%; left: 2%; width: 92%; }
+  .network-feature > img { object-position: 48% center; }
   .network-caption { left: 17px; bottom: 18px; max-width: 58%; }
   .network-caption > strong { font-size: 13px; }
   .network-caption > span { font-size: 7px; letter-spacing: .08em; }
