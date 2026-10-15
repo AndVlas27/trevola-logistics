@@ -8,6 +8,7 @@ import minitruckServiceImage from './assets/images/trevola-fleet-atego-v2.jpg'
 import serviceImage from './assets/images/services-coordinator-fictional.jpg'
 import serviceHeroImage from './assets/images/services-wall-logo-premium.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
+import industriesDetailImage from './assets/images/industries-produce-logistics.jpg'
 import contactImage from './assets/images/contact-coordinator-mural.jpg'
 import contactHeroImage from './assets/images/contact-communications-hero.jpg'
 import careersHeroImage from './assets/images/careers-team-hero.jpg'
@@ -70,6 +71,14 @@ const serviceImageText = {
   ru: ['Иллюстративное изображение вымышленной сотрудницы логистики на складе', 'Иллюстрация координации логистики'],
   uk: ['Ілюстративне зображення вигаданої працівниці логістики на складі', 'Ілюстрація координації логістики'],
 }[locale]
+const industriesImageText = {
+  en: ['Illustrative image of palletized produce prepared for distribution', 'Illustrative sector logistics image'],
+  pt: ['Imagem ilustrativa de produtos agrícolas preparados para distribuição', 'Imagem ilustrativa de logística setorial'],
+  fr: ['Image illustrative de produits agricoles prêts à être distribués', 'Image illustrative de la logistique sectorielle'],
+  de: ['Illustration von palettierter Ware für die Distribution', 'Illustration branchenspezifischer Logistik'],
+  ru: ['Иллюстрация палетированных сельскохозяйственных товаров, подготовленных к отправке', 'Иллюстрация отраслевой логистики'],
+  uk: ['Ілюстрація палетованої сільськогосподарської продукції, підготовленої до відправлення', 'Ілюстрація галузевої логістики'],
+}[locale]
 const labels: Record<string,string> = {
   'about-us':'about-us', services:'services', fleet:'fleet', industries:'industries', contact:'contact',
   careers:'careers', news:'news', 'request-a-quote':'quote', 'privacy-policy':'privacy', cookies:'cookies', terms:'terms',
@@ -114,8 +123,8 @@ function mainContent() {
   if (!data) return '<section class="detail-values section-pad"><div class="container empty-state"><h2>' + copy.seo[page][0] + '</h2><p>' + copy.seo[page][1] + '</p></div></section>'
   const h=data.heading || [data.hero[0],data.hero[1],data.hero[2]]
   const paragraphs=data.paragraphs || []
-  const image=page==='about-us'?industryImage:page==='services'?serviceImage:page==='trucks'?truckServiceImage:page==='vans'?vanServiceImage:page==='minitrucks'?minitruckServiceImage:page==='fleet'?fleetImage:page==='industries'?industryImage:page==='contact'?contactImage:aboutImage
-  const imageDescription=page==='contact'?contactImageText:page==='services'?serviceImageText:imageText
+  const image=page==='about-us'?aboutImage:page==='services'?serviceImage:page==='trucks'?truckServiceImage:page==='vans'?vanServiceImage:page==='minitrucks'?minitruckServiceImage:page==='fleet'?fleetImage:page==='industries'?industriesDetailImage:page==='contact'?contactImage:aboutImage
+  const imageDescription=page==='contact'?contactImageText:page==='services'?serviceImageText:page==='industries'?industriesImageText:imageText
   const intro='<section class="detail-intro section-pad"><div class="container detail-two-col"><div><span class="eyebrow">' + data.hero[0] + '</span><h2>' + h[1] + ' <em>' + h[2] + '</em></h2><p class="detail-lead">' + (paragraphs[0]||data.hero[3]) + '</p>' + paragraphs.slice(1).map(text=>'<p>' + text + '</p>').join('') + '<a class="text-link" href="' + href('request-a-quote') + '">' + common.discuss + ' ' + icon() + '</a></div><figure class="detail-photo detail-photo--' + page + '"><img src="' + image + '" alt="' + imageDescription[0] + '" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Trevola Logistics · ' + imageDescription[1] + '</figcaption></figure></div></section>'
   const cards=data.cards?.length ? '<section class="detail-values section-pad"><div class="container"><div class="page-section-heading"><h2>' + h[1] + ' <em>' + h[2] + '</em></h2></div><div class="detail-cards ' + (page==='industries'?'industry-grid':'service-page-grid') + '">' + data.cards.map((item,i)=>'<article><span class="card-index">0' + (i+1) + '</span><h3>' + item.title + '</h3><p>' + item.text + '</p>' + (page==='services'?'<a href="' + href((['trucks','vans','minitrucks'] as const)[i]) + '">' + common.discuss + ' ' + icon() + '</a>':'') + '</article>').join('') + '</div>' + (data.note?'<p class="industry-note">' + data.note + '</p>':'') + '</div></section>' : ''
   return intro+cards
