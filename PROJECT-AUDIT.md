@@ -1,5 +1,15 @@
 # Revisão do website Trevola Logistics
 
+## Auditoria final — 15/10/2026
+
+- Build de produção concluído sem erros. Foram verificadas 90 páginas localizadas (15 páginas × 6 idiomas), 90 URLs únicas no sitemap e 106 documentos HTML no total, incluindo páginas de compatibilidade e erro 404. As páginas esperadas, títulos, descrições, idiomas, alternates e assets locais estão presentes; não foram detetados destinos duplicados no sitemap.
+- As 150 chaves de tradução têm correspondência entre os seis idiomas. Isto confirma consistência estrutural; não substitui revisão editorial por falantes nativos.
+- Corrigidos o idioma e a descrição em inglês do manifesto PWA e o título/descrição em inglês/inexistente da página 404.
+- O endpoint do formulário foi verificado sem enviar email: método, origem, tipo de conteúdo, JSON inválido, campos em falta e corpo acima do limite devolveram, respetivamente, 405, 403, 415, 400, 400 e 413. A leitura do corpo agora é interrompida ao exceder 20 KB, limitando consumo de memória. A confirmação de entrega real continua pendente para não disparar um pedido de orçamento à caixa da empresa sem autorização específica.
+- `npm audit --omit=dev` não reporta vulnerabilidades nas dependências de produção. A auditoria completa de dependências não pôde consultar o registo npm por indisponibilidade de DNS nesta sessão.
+- `git diff --check` sem erros. Não foi encontrado outro erro reproduzível no código auditado.
+- Pontos que dependem de confirmação da empresa: completar/aprovar os textos legais e confirmar alegações operacionais/publicitárias (por exemplo, disponibilidade GPS/24/7, ADR e condições de serviço). A revisão completa das traduções por falantes nativos também fica fora da validação técnica.
+
 ## Auditoria complementar — 15/10/2026
 
 - A página de notícias usa agora uma imagem editorial própria de um centro logístico, distinta da imagem de estrada da página inicial.

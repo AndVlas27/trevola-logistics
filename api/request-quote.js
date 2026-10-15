@@ -19,6 +19,32 @@ const escapeHtml = (value) => value
 
 const headerText = (value) => value.replace(/[\r\n]+/g, ' ').trim()
 
+async function readRequestBody(request) {
+  const reader = request.body?.getReader()
+  if (!reader) return { tooLarge: false, text: '' }
+
+  const chunks = []
+  let totalBytes = 0
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    totalBytes += value.byteLength
+    if (totalBytes > MAX_BODY_BYTES) {
+      await reader.cancel()
+      return { tooLarge: true, text: '' }
+    }
+    chunks.push(value)
+  }
+
+  const body = new Uint8Array(totalBytes)
+  let offset = 0
+  for (const chunk of chunks) {
+    body.set(chunk, offset)
+    offset += chunk.byteLength
+  }
+  return { tooLarge: false, text: new TextDecoder().decode(body) }
+}
+
 function todayInPortugal() {
   const parts = new Intl.DateTimeFormat('en-CA', {
     timeZone: 'Europe/Lisbon', year: 'numeric', month: '2-digit', day: '2-digit',
@@ -67,8 +93,8 @@ export default async function handler(request) {
       return json(415, { error: 'content_type_not_supported' })
     }
 
-    const rawBody = await request.text()
-    if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+    const { tooLarge, text: rawBody } = await readRequestBody(request)
+    if (tooLarge) {
       return json(413, { error: 'request_too_large' })
     }
 
