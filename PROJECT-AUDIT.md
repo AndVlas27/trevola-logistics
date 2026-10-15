@@ -1,5 +1,12 @@
 # Revisão do website Trevola Logistics
 
+## Auditoria complementar — 15/10/2026
+
+- A página de notícias usa agora uma imagem editorial própria de um centro logístico, distinta da imagem de estrada da página inicial.
+- `npm run build` concluiu sem erros. Foram geradas 90 páginas localizadas (15 páginas × 6 idiomas) e 90 URLs no sitemap.
+- As páginas localizadas foram verificadas quanto a títulos, idioma HTML, canonical, hreflang, texto alternativo das imagens e destinos dos links locais: sem falhas encontradas. Também não há assets locais em falta.
+- A página portuguesa de notícias foi aberta no domínio de produção após a publicação. A entrega de emails não foi testada nesta auditoria; as políticas legais ainda dependem de confirmação dos dados e práticas reais da empresa.
+
 ## Alterações aplicadas
 
 - Atualizados os botões WhatsApp da página inicial e das páginas internas para `https://wa.me/351928338946`.
