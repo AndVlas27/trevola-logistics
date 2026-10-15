@@ -157,9 +157,13 @@ button { color: inherit; }
 .vehicle-photo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; border: 0; background: transparent; }
 .vehicle-photo-grid .vehicle-service-card { min-width: 0; min-height: 0; padding: 0; overflow: hidden; border: 1px solid #dfe7e9; background: #fff; box-shadow: 0 10px 30px rgba(17,39,54,.045); }
 .vehicle-service-image { position: relative; display: block; overflow: hidden; aspect-ratio: 1.5 / 1; background: #e8eef0; }
-.vehicle-service-image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
-.vehicle-service-card:hover .vehicle-service-image img { transform: scale(1.035); }
-.vehicle-service-image > span { position: absolute; top: 14px; left: 14px; display: grid; width: 33px; height: 33px; place-items: center; color: var(--navy); background: rgba(255,255,255,.94); font-size: 10px; font-weight: 800; }
+.vehicle-service-image .vehicle-service-photo { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+.vehicle-service-card:hover .vehicle-service-photo { transform: scale(1.035); }
+.vehicle-brand-logo { position: absolute; z-index: 1; height: auto !important; object-fit: contain !important; opacity: .96; mix-blend-mode: multiply; filter: drop-shadow(0 1px 1px rgba(16,39,56,.13)); pointer-events: none; }
+.vehicle-service-image--1 .vehicle-brand-logo { top: 32%; left: 62%; width: 23%; }
+.vehicle-service-image--2 .vehicle-brand-logo { top: 32%; left: 17%; width: 23%; }
+.vehicle-service-image--3 .vehicle-brand-logo { top: 23%; left: 55%; width: 23%; }
+.vehicle-service-image > span { position: absolute; z-index: 2; top: 14px; left: 14px; display: grid; width: 33px; height: 33px; place-items: center; color: var(--navy); background: rgba(255,255,255,.94); font-size: 10px; font-weight: 800; }
 .vehicle-service-copy { padding: 22px 22px 20px; }
 .vehicle-service-copy h3 { margin: 0; color: var(--navy); font-size: 17px; font-weight: 720; letter-spacing: -.025em; }
 .vehicle-service-copy p { min-height: 72px; max-width: none; margin: 10px 0 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
