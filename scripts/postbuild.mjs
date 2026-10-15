@@ -16,7 +16,7 @@ const heroAssetByPage = {
   'request-a-quote': 'contact-coordinator-mural-',
   contact: 'contact-communications-hero-',
   careers: 'careers-team-hero-',
-  news: 'network-road-branded-',
+  news: 'news-logistics-editorial-',
 }
 const pageHeroAssets = Object.fromEntries(Object.entries(heroAssetByPage).map(([page, prefix]) => [
   page,
