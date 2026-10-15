@@ -1,10 +1,10 @@
 import './style.css'
 import heroImage from './assets/images/hero-production.jpg'
-import aboutImage from './assets/images/trevola-operations-control-premium.webp'
+import aboutImage from './assets/images/trevola-about-terminal-v2.jpg'
 import warehouseImage from './assets/images/network-road-branded.jpg'
-import truckServiceImage from './assets/images/trevola-fleet-actros.jpg'
+import truckServiceImage from './assets/images/trevola-fleet-actros-v2.jpg'
 import vanServiceImage from './assets/images/trevola-fleet-sprinter.jpg'
-import minitruckServiceImage from './assets/images/trevola-fleet-atego.jpg'
+import minitruckServiceImage from './assets/images/trevola-fleet-atego-v2.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 
 import { languageOptions, translations, type Language } from './i18n'
