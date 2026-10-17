@@ -56,24 +56,30 @@ function todayInPortugal() {
 function validate(data) {
   const required = [
     'company', 'contact', 'email', 'phone', 'pickupCountry', 'pickupCity',
-    'deliveryCountry', 'deliveryCity', 'transport', 'cargo', 'pallets',
-    'weight', 'volume', 'loadingDate',
+    'deliveryCountry', 'deliveryCity', 'transport', 'cargo',
   ]
   if (!data || typeof data !== 'object' || Array.isArray(data)) return 'invalid'
   if (required.some((key) => typeof data[key] !== 'string' || !data[key].trim())) return 'missing'
   if (required.some((key) => data[key].length > MAX_FIELD_LENGTH)) return 'too_long'
+  for (const key of ['pallets', 'weight', 'volume', 'loadingDate']) {
+    if (data[key] !== undefined && typeof data[key] !== 'string') return 'invalid'
+    if (typeof data[key] === 'string' && data[key].length > MAX_FIELD_LENGTH) return 'too_long'
+    data[key] ??= ''
+  }
   if (data.additional !== undefined && typeof data.additional !== 'string') return 'invalid'
   if (typeof data.additional === 'string' && data.additional.length > MAX_FIELD_LENGTH) return 'too_long'
   data.additional ??= ''
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) return 'email'
   if (!ALLOWED_TRANSPORTS.has(data.transport)) return 'transport'
-  if (!Number.isInteger(Number(data.pallets)) || Number(data.pallets) < 1) return 'pallets'
-  if (!Number.isFinite(Number(data.weight)) || Number(data.weight) <= 0) return 'weight'
-  if (!Number.isFinite(Number(data.volume)) || Number(data.volume) <= 0) return 'volume'
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(data.loadingDate)) return 'date'
-  const loadingDate = new Date(`${data.loadingDate}T00:00:00Z`)
-  if (Number.isNaN(loadingDate.getTime()) || loadingDate.toISOString().slice(0, 10) !== data.loadingDate) return 'date'
-  if (data.loadingDate < todayInPortugal()) return 'date'
+  if (data.pallets && (!Number.isInteger(Number(data.pallets)) || Number(data.pallets) < 1)) return 'pallets'
+  if (data.weight && (!Number.isFinite(Number(data.weight)) || Number(data.weight) <= 0)) return 'weight'
+  if (data.volume && (!Number.isFinite(Number(data.volume)) || Number(data.volume) <= 0)) return 'volume'
+  if (data.loadingDate) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data.loadingDate)) return 'date'
+    const loadingDate = new Date(`${data.loadingDate}T00:00:00Z`)
+    if (Number.isNaN(loadingDate.getTime()) || loadingDate.toISOString().slice(0, 10) !== data.loadingDate) return 'date'
+    if (data.loadingDate < todayInPortugal()) return 'date'
+  }
   if (data.website) return 'spam'
   return ''
 }
@@ -123,8 +129,9 @@ export default async function handler(request) {
       ['Weight (kg)', data.weight], ['Volume (m³)', data.volume],
       ['Preferred loading date', data.loadingDate], ['Additional information', data.additional],
     ]
-    const text = fields.map(([label, value]) => `${label}:\n${value}`).join('\n\n')
-    const html = fields.map(([label, value]) =>
+    const suppliedFields = fields.filter(([, value]) => String(value ?? '').trim())
+    const text = suppliedFields.map(([label, value]) => `${label}:\n${value}`).join('\n\n')
+    const html = suppliedFields.map(([label, value]) =>
       `<tr><th align="left" style="padding:8px 12px;border-bottom:1px solid #e1e7e9">${escapeHtml(label)}</th><td style="padding:8px 12px;border-bottom:1px solid #e1e7e9">${escapeHtml(value).replaceAll('\n', '<br>')}</td></tr>`,
     ).join('')
 
