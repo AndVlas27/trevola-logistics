@@ -10,6 +10,7 @@ import logo from './assets/logo/trevola-logo-production.png'
 import { languageOptions, translations, type Language } from './i18n'
 import { pageUrl } from './routes'
 import { siteCopy } from './page-copy'
+import { initializeAnalyticsConsent } from './analytics'
 
 const services = [
   { title: 'service1Title', text: 'service1Text', image: truckServiceImage, route: 'trucks' },
@@ -318,5 +319,6 @@ function updateScrollControls() {
 }
 
 render()
+initializeAnalyticsConsent()
 window.addEventListener('scroll', updateScrollControls, { passive: true })
 updateScrollControls()

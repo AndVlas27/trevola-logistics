@@ -55,12 +55,17 @@ function todayInPortugal() {
 
 function validate(data) {
   const required = [
-    'company', 'contact', 'email', 'phone', 'pickupCountry', 'pickupCity',
+    'contact', 'email', 'phone', 'pickupCountry', 'pickupCity',
     'deliveryCountry', 'deliveryCity', 'transport', 'cargo',
   ]
   if (!data || typeof data !== 'object' || Array.isArray(data)) return 'invalid'
   if (required.some((key) => typeof data[key] !== 'string' || !data[key].trim())) return 'missing'
   if (required.some((key) => data[key].length > MAX_FIELD_LENGTH)) return 'too_long'
+  if (data.company !== undefined && typeof data.company !== 'string') return 'invalid'
+  if (typeof data.company === 'string' && data.company.length > MAX_FIELD_LENGTH) return 'too_long'
+  data.company ??= ''
+  if (data.clientType !== undefined && !['', 'company', 'individual'].includes(data.clientType)) return 'invalid'
+  data.clientType ??= ''
   for (const key of ['pallets', 'weight', 'volume', 'loadingDate']) {
     if (data[key] !== undefined && typeof data[key] !== 'string') return 'invalid'
     if (typeof data[key] === 'string' && data[key].length > MAX_FIELD_LENGTH) return 'too_long'
@@ -122,6 +127,7 @@ export default async function handler(request) {
     }
 
     const fields = [
+      ['Customer type (self-declared)', data.clientType === 'company' ? 'Company' : data.clientType === 'individual' ? 'Private individual' : ''],
       ['Company', data.company], ['Contact person', data.contact], ['Email', data.email],
       ['Phone', data.phone], ['Pickup country', data.pickupCountry], ['Pickup city', data.pickupCity],
       ['Delivery country', data.deliveryCountry], ['Delivery city', data.deliveryCity],

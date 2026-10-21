@@ -18,6 +18,7 @@ import fleetLineupImage from './assets/images/trevola-fleet-lineup-premium.jpg'
 import logo from './assets/logo/trevola-logo-production.png'
 import { siteCopy, type PageId } from './page-copy'
 import { currentLanguage, pageUrl } from './routes'
+import { initializeAnalyticsConsent, trackQuoteSuccess } from './analytics'
 
 const icon = (name = 'arrow') => {
   const paths: Record<string,string> = {
@@ -104,8 +105,8 @@ function header() {
 }
 
 function quote() {
-  const fields: [string,string][] = [['company','text'],['contact','text'],['email','email'],['phone','tel'],['pickupCountry','text'],['pickupCity','text'],['deliveryCountry','text'],['deliveryCity','text'],['transport','select'],['pallets','number'],['cargo','textarea'],['weight','number'],['volume','number'],['loadingDate','date'],['additional','textarea']]
-  const optionalFields = new Set(['pallets','weight','volume','loadingDate'])
+  const fields: [string,string][] = [['clientType','client-type'],['company','text'],['contact','text'],['email','email'],['phone','tel'],['pickupCountry','text'],['pickupCity','text'],['deliveryCountry','text'],['deliveryCity','text'],['transport','select'],['pallets','number'],['cargo','textarea'],['weight','number'],['volume','number'],['loadingDate','date'],['additional','textarea']]
+  const optionalFields = new Set(['clientType','company','pallets','weight','volume','loadingDate'])
   const autocomplete: Record<string,string> = { company: 'organization', contact: 'name', email: 'email', phone: 'tel', pickupCountry: 'country-name', pickupCity: 'address-level2', deliveryCountry: 'country-name', deliveryCity: 'address-level2' }
   const controls = fields.map(([name,type]) => {
     const label = copy.quote.labels[name]
@@ -113,6 +114,8 @@ function quote() {
     const completion = autocomplete[name] ? ' autocomplete="' + autocomplete[name] + '"' : ''
     let input = type==='select'
       ? '<select id="field-' + name + '" name="' + name + '" required aria-describedby="' + id + '-error"><option value="">' + copy.quote.select + '</option>' + transportOptions[locale].map(([value, label]) => '<option value="' + value + '">' + label + '</option>').join('') + '</select>'
+      : type==='client-type'
+        ? '<select id="field-' + name + '" name="' + name + '" aria-describedby="' + id + '-error"><option value="">' + copy.quote.clientTypeSelect + '</option><option value="company">' + copy.quote.clientTypeCompany + '</option><option value="individual">' + copy.quote.clientTypeIndividual + '</option></select>'
       : type==='textarea'
         ? '<textarea id="field-' + name + '" name="' + name + '" rows="3" maxlength="2000"' + (name==='additional'?'':' required') + ' aria-describedby="' + id + '-error"></textarea>'
         : '<input id="field-' + name + '" name="' + name + '" type="' + type + '"' + (type==='number'?'':' maxlength="2000"') + completion + (optionalFields.has(name)?'':' required') + ' aria-describedby="' + id + '-error"' + (type==='number'?(name==='pallets'?' min="1" step="1" inputmode="numeric"':' min="0.01" step="any" inputmode="decimal"'):'') + '>'
@@ -190,7 +193,7 @@ function setupForm(app: HTMLElement) {
       const result=await response.json().catch(()=>({})) as {error?:string}
       status.textContent=response.ok?copy.quote.success:result.error==='email_not_configured'?copy.quote.notConfigured:copy.quote.genericError
       status.toggleAttribute('data-state',!response.ok)
-      if(response.ok)form.reset()
+      if(response.ok){const clientType=form.elements.namedItem('clientType');trackQuoteSuccess(clientType instanceof HTMLSelectElement?clientType.value:undefined);form.reset()}
     } catch {status.textContent=copy.quote.genericError;status.setAttribute('data-state','error')}
     finally{form.classList.remove('is-submitting');button.disabled=false;button.removeAttribute('aria-busy');status.hidden=false;status.focus()}
   })
@@ -225,7 +228,7 @@ function render() {
   panel.addEventListener('keydown',event=>{if(event.key==='Escape'){menu.setAttribute('aria-expanded','false');panel.classList.remove('is-open');menu.focus()}})
   app.querySelector<HTMLSelectElement>('.language-select')?.addEventListener('change',event=>{const lang=(event.currentTarget as HTMLSelectElement).value;try{localStorage.setItem('trevola-language',lang)}catch{}location.href=pageUrl(lang as typeof locale,page)})
   app.querySelector<HTMLButtonElement>('.back-top')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
-  setupSearch(app);setupForm(app)
+  setupSearch(app);setupForm(app);initializeAnalyticsConsent()
   const reveal=app.querySelectorAll<HTMLElement>('.detail-page > section,.detail-photo,.detail-cards article')
   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver'in window))reveal.forEach(item=>item.classList.add('is-visible'))
   else{const observer=new IntersectionObserver((entries,instance)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');instance.unobserve(entry.target)}}),{threshold:.12});reveal.forEach(item=>{item.setAttribute('data-reveal','');observer.observe(item)})}
