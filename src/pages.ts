@@ -6,6 +6,9 @@ import fleetImage from './assets/images/fleet-warehouse-production.jpg'
 import truckServiceImage from './assets/images/trevola-fleet-actros-branded.jpg'
 import vanServiceImage from './assets/images/trevola-fleet-sprinter-branded.jpg'
 import minitruckServiceImage from './assets/images/trevola-fleet-atego-branded.jpg'
+import truckLoadingHeroImage from './assets/images/trevola-truck-loading.jpg'
+import expressVanHeroImage from './assets/images/trevola-express-van.jpg'
+import minitruckHeroImage from './assets/images/trevola-minitruck.jpg'
 import serviceImage from './assets/images/services-coordinator-fictional.jpg'
 import serviceHeroImage from './assets/images/services-wall-logo-premium.jpg'
 import industryImage from './assets/images/industries-cargo-production.jpg'
@@ -213,9 +216,9 @@ function render() {
   const image = page === 'careers' ? careersHeroImage
     : page === 'about-us' ? aboutImage
     : page === 'services' ? serviceHeroImage
-    : page === 'trucks' ? truckServiceImage
-    : page === 'vans' ? vanServiceImage
-    : page === 'minitrucks' ? minitruckServiceImage
+    : page === 'trucks' ? truckLoadingHeroImage
+    : page === 'vans' ? expressVanHeroImage
+    : page === 'minitrucks' ? minitruckHeroImage
     : page === 'fleet' ? fleetLineupImage
     : page === 'industries' ? industryImage
     : page === 'contact' ? contactHeroImage
