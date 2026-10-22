@@ -1,6 +1,4 @@
 type ConsentCopy = {
-  title: string
-  message: string
   accept: string
   reject: string
   preferences: string
@@ -14,12 +12,12 @@ type ConsentCopy = {
 }
 
 const copy: Record<string, ConsentCopy> = {
-  en: { title: 'Optional cookies', message: 'Analytics tools are used only with your permission. You can change this choice at any time.', accept: 'Accept analytics', reject: 'Reject optional', preferences: 'Preferences', settingsTitle: 'Privacy preferences', analytics: 'Website analytics', analyticsDescription: 'Google Analytics 4, Microsoft Clarity and Cloudflare Web Analytics. No advertising or marketing tracking is enabled.', save: 'Save choices', close: 'Close', manage: 'Cookie preferences', cookiePolicy: 'Cookie policy' },
-  pt: { title: 'Cookies opcionais', message: 'As ferramentas de análise só são ativadas com a sua autorização. Pode alterar esta escolha quando quiser.', accept: 'Aceitar análise', reject: 'Rejeitar opcionais', preferences: 'Preferências', settingsTitle: 'Preferências de privacidade', analytics: 'Análise do site', analyticsDescription: 'Google Analytics 4, Microsoft Clarity e Cloudflare Web Analytics. Não ativamos publicidade nem acompanhamento de marketing.', save: 'Guardar escolhas', close: 'Fechar', manage: 'Preferências de cookies', cookiePolicy: 'Política de cookies' },
-  de: { title: 'Optionale Cookies', message: 'Analysetools werden nur mit Ihrer Zustimmung aktiviert. Sie können diese Auswahl jederzeit ändern.', accept: 'Analyse akzeptieren', reject: 'Optionale ablehnen', preferences: 'Einstellungen', settingsTitle: 'Datenschutzeinstellungen', analytics: 'Website-Analyse', analyticsDescription: 'Google Analytics 4, Microsoft Clarity und Cloudflare Web Analytics. Werbung und Marketing-Tracking sind deaktiviert.', save: 'Auswahl speichern', close: 'Schließen', manage: 'Cookie-Einstellungen', cookiePolicy: 'Cookie-Richtlinie' },
-  fr: { title: 'Cookies facultatifs', message: 'Les outils de mesure ne sont activés qu’avec votre accord. Vous pouvez modifier ce choix à tout moment.', accept: 'Accepter la mesure', reject: 'Refuser les options', preferences: 'Préférences', settingsTitle: 'Préférences de confidentialité', analytics: 'Mesure du site', analyticsDescription: 'Google Analytics 4, Microsoft Clarity et Cloudflare Web Analytics. Aucun suivi publicitaire ou marketing n’est activé.', save: 'Enregistrer mes choix', close: 'Fermer', manage: 'Préférences des cookies', cookiePolicy: 'Politique relative aux cookies' },
-  ru: { title: 'Необязательные файлы cookie', message: 'Аналитические инструменты включаются только с вашего согласия. Вы можете изменить выбор в любое время.', accept: 'Разрешить аналитику', reject: 'Отклонить необязательное', preferences: 'Настройки', settingsTitle: 'Настройки конфиденциальности', analytics: 'Аналитика сайта', analyticsDescription: 'Google Analytics 4, Microsoft Clarity и Cloudflare Web Analytics. Рекламное и маркетинговое отслеживание отключено.', save: 'Сохранить выбор', close: 'Закрыть', manage: 'Настройки файлов cookie', cookiePolicy: 'Политика файлов cookie' },
-  uk: { title: 'Необов’язкові файли cookie', message: 'Аналітичні інструменти вмикаються лише за вашою згодою. Ви можете змінити вибір будь-коли.', accept: 'Дозволити аналітику', reject: 'Відхилити необов’язкове', preferences: 'Налаштування', settingsTitle: 'Налаштування конфіденційності', analytics: 'Аналітика сайту', analyticsDescription: 'Google Analytics 4, Microsoft Clarity і Cloudflare Web Analytics. Рекламне та маркетингове відстеження вимкнено.', save: 'Зберегти вибір', close: 'Закрити', manage: 'Налаштування файлів cookie', cookiePolicy: 'Політика файлів cookie' },
+  en: { accept: 'Accept analytics', reject: 'Reject optional', preferences: 'Preferences', settingsTitle: 'Privacy preferences', analytics: 'Website analytics', analyticsDescription: 'Google Analytics 4, Microsoft Clarity and Cloudflare Web Analytics. No advertising or marketing tracking is enabled.', save: 'Save choices', close: 'Close', manage: 'Cookie preferences', cookiePolicy: 'Cookie policy' },
+  pt: { accept: 'Aceitar análise', reject: 'Rejeitar opcionais', preferences: 'Preferências', settingsTitle: 'Preferências de privacidade', analytics: 'Análise do site', analyticsDescription: 'Google Analytics 4, Microsoft Clarity e Cloudflare Web Analytics. Não ativamos publicidade nem acompanhamento de marketing.', save: 'Guardar escolhas', close: 'Fechar', manage: 'Preferências de cookies', cookiePolicy: 'Política de cookies' },
+  de: { accept: 'Analyse akzeptieren', reject: 'Optionale ablehnen', preferences: 'Einstellungen', settingsTitle: 'Datenschutzeinstellungen', analytics: 'Website-Analyse', analyticsDescription: 'Google Analytics 4, Microsoft Clarity und Cloudflare Web Analytics. Werbung und Marketing-Tracking sind deaktiviert.', save: 'Auswahl speichern', close: 'Schließen', manage: 'Cookie-Einstellungen', cookiePolicy: 'Cookie-Richtlinie' },
+  fr: { accept: 'Accepter la mesure', reject: 'Refuser les options', preferences: 'Préférences', settingsTitle: 'Préférences de confidentialité', analytics: 'Mesure du site', analyticsDescription: 'Google Analytics 4, Microsoft Clarity et Cloudflare Web Analytics. Aucun suivi publicitaire ou marketing n’est activé.', save: 'Enregistrer mes choix', close: 'Fermer', manage: 'Préférences des cookies', cookiePolicy: 'Politique relative aux cookies' },
+  ru: { accept: 'Разрешить аналитику', reject: 'Отклонить необязательное', preferences: 'Настройки', settingsTitle: 'Настройки конфиденциальности', analytics: 'Аналитика сайта', analyticsDescription: 'Google Analytics 4, Microsoft Clarity и Cloudflare Web Analytics. Рекламное и маркетинговое отслеживание отключено.', save: 'Сохранить выбор', close: 'Закрыть', manage: 'Настройки файлов cookie', cookiePolicy: 'Политика файлов cookie' },
+  uk: { accept: 'Дозволити аналітику', reject: 'Відхилити необов’язкове', preferences: 'Налаштування', settingsTitle: 'Налаштування конфіденційності', analytics: 'Аналітика сайту', analyticsDescription: 'Google Analytics 4, Microsoft Clarity і Cloudflare Web Analytics. Рекламне та маркетингове відстеження вимкнено.', save: 'Зберегти вибір', close: 'Закрити', manage: 'Налаштування файлів cookie', cookiePolicy: 'Політика файлів cookie' },
 }
 
 const storageKey = 'trevola-analytics-consent-v1'
@@ -115,34 +113,23 @@ export function trackQuoteSuccess(clientType?: string) {
 }
 
 export function initializeAnalyticsConsent() {
-  if (!hasAnalytics || document.getElementById('analytics-consent-banner')) return
+  if (!hasAnalytics || document.getElementById('analytics-consent-dialog')) return
   const locale = document.documentElement.lang.toLowerCase().split('-')[0]
   const text = copy[locale] ?? copy.en
-  const banner = document.createElement('aside')
-  banner.id = 'analytics-consent-banner'
-  banner.className = 'analytics-consent-banner'
-  banner.setAttribute('aria-label', text.title)
-  banner.innerHTML = `<div class="analytics-consent-copy"><strong>${text.title}</strong><p>${text.message} <a href="${new URL('cookies.html', location.href).pathname}">${text.cookiePolicy}</a></p></div><div class="analytics-consent-actions"><button type="button" class="consent-button consent-reject" data-consent-reject>${text.reject}</button><button type="button" class="consent-button consent-preferences" data-consent-open>${text.preferences}</button><button type="button" class="consent-button consent-accept" data-consent-accept>${text.accept}</button></div>`
-
   const dialog = document.createElement('dialog')
   dialog.id = 'analytics-consent-dialog'
   dialog.className = 'analytics-consent-dialog'
   dialog.setAttribute('aria-labelledby', 'analytics-consent-title')
   dialog.innerHTML = `<form method="dialog"><button type="submit" class="consent-dialog-close" aria-label="${text.close}">×</button></form><h2 id="analytics-consent-title">${text.settingsTitle}</h2><label class="consent-toggle"><input type="checkbox" name="analytics"><span><strong>${text.analytics}</strong><small>${text.analyticsDescription}</small></span></label><div class="analytics-consent-actions"><button type="button" class="consent-button consent-reject" data-consent-reject>${text.reject}</button><button type="button" class="consent-button consent-accept" data-consent-save>${text.save}</button></div>`
 
-  document.body.append(banner, dialog)
+  document.body.append(dialog)
   const analyticsToggle = dialog.querySelector<HTMLInputElement>('input[name="analytics"]')!
-  const hideBanner = () => { banner.hidden = true }
   const setChoice = (accepted: boolean) => {
     saveConsent(accepted)
     if (accepted) loadAnalytics()
     else stopAnalytics()
-    hideBanner()
     if (dialog.open) dialog.close()
   }
-  banner.querySelector('[data-consent-accept]')?.addEventListener('click', () => setChoice(true))
-  banner.querySelector('[data-consent-reject]')?.addEventListener('click', () => setChoice(false))
-  banner.querySelector('[data-consent-open]')?.addEventListener('click', () => { analyticsToggle.checked = getConsent() === true; dialog.showModal() })
   dialog.querySelector('[data-consent-reject]')?.addEventListener('click', () => setChoice(false))
   dialog.querySelector('[data-consent-save]')?.addEventListener('click', () => setChoice(analyticsToggle.checked))
   const manage = document.createElement('button')
@@ -154,5 +141,4 @@ export function initializeAnalyticsConsent() {
 
   const choice = getConsent()
   if (choice === true) loadAnalytics()
-  else if (choice === false) banner.hidden = true
 }
