@@ -25,6 +25,9 @@ const pageHeroAssets = Object.fromEntries(Object.entries(heroAssetByPage).map(([
 const base = 'https://www.trevolalogistics.com'
 const langs = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
 const pages = ['home', 'about-us', 'services', 'trucks', 'vans', 'minitrucks', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
+// The News page is an empty placeholder until real articles are published.
+// Keep it available to visitors, but do not ask search engines to index it.
+const sitemapPages = pages.filter(page => page !== 'news')
 const nav = {
   en: { home:'Home', 'about-us':'About Us', services:'Services', trucks:'Trucks', vans:'Express Vans', minitrucks:'Minitrucks', fleet:'Fleet', industries:'Industries', 'request-a-quote':'Request a Quote', contact:'Contact', 'privacy-policy':'Privacy Policy', cookies:'Cookie Policy', terms:'Terms & Conditions', careers:'Careers', news:'News' },
   pt: { home:'Início', 'about-us':'Sobre nós', services:'Serviços', trucks:'Camiões', vans:'Carrinhas expresso', minitrucks:'Minitir', fleet:'Rede de transporte', industries:'Setores', 'request-a-quote':'Pedir orçamento', contact:'Contactos', 'privacy-policy':'Política de Privacidade', cookies:'Política de Cookies', terms:'Termos e Condições', careers:'Carreiras', news:'Notícias' },
@@ -92,6 +95,9 @@ for (const page of pages) {
       .replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, '<meta property="og:description" content="' + escape(pageDescription) + '">')
       .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, '<meta name="twitter:title" content="' + escape(title) + '">')
       .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, '<meta name="twitter:description" content="' + escape(pageDescription) + '">')
+    if (page === 'news') {
+      html = html.replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow">')
+    }
     if (!html.includes('rel="preload" as="image"')) {
       const image = pageHeroAssets[page]
       if (image) html = html.replace('</head>', '  <link rel="preload" as="image" href="/assets/' + image + '" fetchpriority="high">\n</head>')
@@ -110,12 +116,15 @@ for (const page of pages) {
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, '<link rel="canonical" href="' + canonical + '">')
     .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, '<meta property="og:url" content="' + canonical + '">')
     .replace('</head>', '  ' + langs.map(code=>'<link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '">').join('\n  ') + '\n  <link rel="alternate" hreflang="x-default" href="' + base + pathFor('en',page) + '">\n</head>')
+  if (page === 'news') {
+    rootHtml = rootHtml.replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow">')
+  }
   if (!rootHtml.includes('rel="manifest"')) rootHtml = rootHtml.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest">\n</head>')
   await writeFile(alias,rootHtml)
 }
 
 const priorities = { home:'1.0', 'request-a-quote':'0.9', services:'0.8', contact:'0.8', industries:'0.7', 'about-us':'0.7', fleet:'0.6' }
-const urls = pages.flatMap(page=>langs.map(lang=>{
+const urls = sitemapPages.flatMap(page=>langs.map(lang=>{
   const alternates = langs.map(code=>'<xhtml:link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '"/>').join('')
   return '<url><loc>' + base + pathFor(lang,page) + '</loc>' + alternates + '<changefreq>monthly</changefreq><priority>' + (priorities[page] || '0.4') + '</priority></url>'
 })).join('\n')
