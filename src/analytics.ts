@@ -26,7 +26,7 @@ const storageKey = 'trevola-analytics-consent-v1'
 const ids = {
   ga4: (import.meta.env.VITE_GA4_MEASUREMENT_ID ?? '').trim(),
   clarity: (import.meta.env.VITE_CLARITY_PROJECT_ID ?? '').trim(),
-  cloudflare: (import.meta.env.VITE_CF_WEB_ANALYTICS_TOKEN ?? '').trim(),
+  cloudflare: '143ea66361054d2d8a315f5f9471926b',
 }
 const configured = {
   ga4: /^G-[A-Z0-9]+$/i.test(ids.ga4),
