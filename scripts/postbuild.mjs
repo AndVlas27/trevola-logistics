@@ -22,12 +22,14 @@ const pageHeroAssets = Object.fromEntries(Object.entries(heroAssetByPage).map(([
   page,
   builtAssets.find(file => file.startsWith(prefix) && /\.(avif|webp|jpe?g|png)$/i.test(file)),
 ]))
+const logoAsset = builtAssets.find(file => file.startsWith('trevola-logo-production-') && /\.(avif|webp|jpe?g|png)$/i.test(file))
 const base = 'https://www.trevolalogistics.com'
 const langs = ['en', 'pt', 'fr', 'de', 'ru', 'uk']
 const pages = ['home', 'about-us', 'services', 'trucks', 'vans', 'minitrucks', 'fleet', 'industries', 'request-a-quote', 'contact', 'privacy-policy', 'cookies', 'terms', 'careers', 'news']
-// The News page is an empty placeholder until real articles are published.
-// Keep it available to visitors, but do not ask search engines to index it.
-const sitemapPages = pages.filter(page => page !== 'news')
+// Empty editorial pages remain available to visitors but are not useful search
+// landing pages until they contain real vacancies or published articles.
+const noindexPages = new Set(['careers', 'news'])
+const sitemapPages = pages.filter(page => !noindexPages.has(page))
 const nav = {
   en: { home:'Home', 'about-us':'About Us', services:'Services', trucks:'Trucks', vans:'Express Vans', minitrucks:'Minitrucks', fleet:'Fleet', industries:'Industries', 'request-a-quote':'Request a Quote', contact:'Contact', 'privacy-policy':'Privacy Policy', cookies:'Cookie Policy', terms:'Terms & Conditions', careers:'Careers', news:'News' },
   pt: { home:'Início', 'about-us':'Sobre nós', services:'Serviços', trucks:'Camiões', vans:'Carrinhas expresso', minitrucks:'Minitir', fleet:'Rede de transporte', industries:'Setores', 'request-a-quote':'Pedir orçamento', contact:'Contactos', 'privacy-policy':'Política de Privacidade', cookies:'Política de Cookies', terms:'Termos e Condições', careers:'Carreiras', news:'Notícias' },
@@ -95,9 +97,37 @@ for (const page of pages) {
       .replace(/<meta property="og:description" content="[^"]*"\s*\/?>/, '<meta property="og:description" content="' + escape(pageDescription) + '">')
       .replace(/<meta name="twitter:title" content="[^"]*"\s*\/?>/, '<meta name="twitter:title" content="' + escape(title) + '">')
       .replace(/<meta name="twitter:description" content="[^"]*"\s*\/?>/, '<meta name="twitter:description" content="' + escape(pageDescription) + '">')
-    if (page === 'news') {
+    if (noindexPages.has(page)) {
       html = html.replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow">')
     }
+    const structuredData = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': base + '/pt/#organization',
+        name: 'Trevola Logistics, Lda.',
+        url: base + '/pt/',
+        ...(logoAsset ? { logo: base + '/assets/' + logoAsset } : {}),
+        email: 'info@trevolalogistics.com',
+        telephone: '+351 928 338 946',
+        areaServed: ['Portugal', 'Europe'],
+      },
+      ...(page === 'home' ? [{
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Trevola Logistics',
+        url: base + pathFor(lang, 'home'),
+        inLanguage: localeTag[lang],
+      }] : [{
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: nav[lang].home, item: base + pathFor(lang, 'home') },
+          { '@type': 'ListItem', position: 2, name: nav[lang][page], item: canonical },
+        ],
+      }]),
+    ]
+    html = html.replace('</head>', '  <script type="application/ld+json">' + JSON.stringify(structuredData) + '</script>\n</head>')
     if (!html.includes('rel="preload" as="image"')) {
       const image = pageHeroAssets[page]
       if (image) html = html.replace('</head>', '  <link rel="preload" as="image" href="/assets/' + image + '" fetchpriority="high">\n</head>')
@@ -116,7 +146,7 @@ for (const page of pages) {
     .replace(/<link rel="canonical" href="[^"]*"\s*\/?>/, '<link rel="canonical" href="' + canonical + '">')
     .replace(/<meta property="og:url" content="[^"]*"\s*\/?>/, '<meta property="og:url" content="' + canonical + '">')
     .replace('</head>', '  ' + langs.map(code=>'<link rel="alternate" hreflang="' + localeTag[code] + '" href="' + base + pathFor(code,page) + '">').join('\n  ') + '\n  <link rel="alternate" hreflang="x-default" href="' + base + pathFor('en',page) + '">\n</head>')
-  if (page === 'news') {
+  if (noindexPages.has(page)) {
     rootHtml = rootHtml.replace(/<meta name="robots" content="[^"]*"\s*\/?>/, '<meta name="robots" content="noindex, follow">')
   }
   if (!rootHtml.includes('rel="manifest"')) rootHtml = rootHtml.replace('</head>', '  <link rel="manifest" href="/manifest.webmanifest">\n</head>')
