@@ -118,6 +118,7 @@
 .quote-contact-card a, .quote-contact-card > div { min-width: 0; display: grid; gap: 4px; }
 .quote-contact-card small { color: var(--muted); font-size: 9px; }
 .quote-contact-card strong { overflow-wrap: anywhere; color: var(--navy); font-size: 10px; }
+.quote-contact-card .company-id { margin-top: 9px; }
 
 .contact-page { background: #fff; }
 .contact-page-grid { display: grid; grid-template-columns: 1fr .8fr; align-items: center; gap: clamp(55px, 9vw, 130px); }
