@@ -250,6 +250,7 @@ button { color: inherit; }
 .footer-nav a, .footer-contact a { color: rgba(255,255,255,.64); font-size: 10px; transition: color .2s ease; }
 .footer-nav a:hover, .footer-contact a:hover { color: #fff; }
 .footer-contact .footer-licence { display: grid; justify-items: start; gap: 4px; margin-top: 2px; color: rgba(255,255,255,.64); font-size: 10px; letter-spacing: normal; text-transform: none; }
+.footer-licence .company-id, .footer-licence .company-id small { font-size: 10px; }
 .company-id { display: block; margin-top: 9px; color: inherit; font-size: 9px; font-weight: 500; letter-spacing: normal; line-height: 1.45; text-transform: none; }
 .contact-detail .company-id strong, .quote-contact-card .company-id strong, .footer-licence .company-id strong { display: block; margin-top: 2px; color: inherit; font-size: inherit; font-weight: 700; }
 .contact-detail .company-id strong { font-size: 11px; }
