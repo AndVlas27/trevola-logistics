@@ -115,6 +115,8 @@ export function trackQuoteSuccess(clientType?: string) {
 }
 
 export function initializeAnalyticsConsent() {
+  const productionHosts = new Set(['trevolalogistics.com', 'www.trevolalogistics.com'])
+  if (!productionHosts.has(location.hostname.toLowerCase())) return
   if (!hasAnalytics || document.getElementById('analytics-consent-banner')) return
   const locale = document.documentElement.lang.toLowerCase().split('-')[0]
   const text = copy[locale] ?? copy.en
